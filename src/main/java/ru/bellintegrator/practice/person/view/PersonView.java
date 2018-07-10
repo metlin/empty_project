@@ -16,3 +16,4 @@ public class PersonView {
         return "{id:" + id + ";name:" + name + ";age" + age + "}";
     }
 }
+
