@@ -1,10 +1,18 @@
 package ru.bellintegrator.practice.organization.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@Entity
 public class Organization {
-  
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
    	private Long id;
+    
     private String name;
     private boolean isActive;
     private String fullName;
