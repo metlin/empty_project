@@ -1,4 +1,4 @@
-package ru.bellintegrator.practice.organization.controller;
+package ru.bellintegrator.practice.organization.request;
 
 public class OrganizationListRequest {
 	private int inn;

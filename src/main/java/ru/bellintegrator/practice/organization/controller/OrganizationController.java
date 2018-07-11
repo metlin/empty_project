@@ -7,12 +7,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.ui.Model;
 
-import ru.bellintegrator.practice.organization.view.OrganizationView;
-import ru.bellintegrator.practice.organization.controller.OrganizationListRequest;
+import ru.bellintegrator.practice.organization.view.OrganizationListView;
+import ru.bellintegrator.practice.organization.view.OrganizationIdView;
+import ru.bellintegrator.practice.organization.request.OrganizationListRequest;
+import ru.bellintegrator.practice.organization.request.OrganizationUpdateRequest;
+import ru.bellintegrator.practice.organization.request.OrganizationSaveRequest;
 
 import java.util.List;
 import java.util.ArrayList;
-
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -23,34 +25,33 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 public class OrganizationController {
 
     @RequestMapping(value = "/list", method = POST)
-    public ArrayList<OrganizationView> list(@RequestBody OrganizationListRequest request) {
-        ArrayList<OrganizationView> organizations = new ArrayList<OrganizationView>();
-		organizations.add(new OrganizationView(42, "ПАО Газпром", true));
-		organizations.add(new OrganizationView(31, "ПАО Сбербанк", false));
-		organizations.add(new OrganizationView(89, "ПАО ВТБ", true));
+    public ArrayList<OrganizationListView> list(@RequestBody OrganizationListRequest request) {
+        ArrayList<OrganizationListView> organizations = new ArrayList<OrganizationListView>();
+		organizations.add(new OrganizationListView(42L, "ПАО Газпром", true));
+		organizations.add(new OrganizationListView(31L, "ПАО Сбербанк", false));
+		organizations.add(new OrganizationListView(89L, "ПАО ВТБ", true));
 
 		return organizations;
     }
 
     @RequestMapping(value = "/{id}", method = GET)
-    public OrganizationView id(@PathVariable("id") Integer id) {
-        return new OrganizationView(id, "Burger", true);
+    public OrganizationIdView id(@PathVariable("id") Long id) {
+        return new OrganizationIdView(id, "Газпром", "ПАО Газпром", 1234321789L, 543235789L,
+        	"Москва, пр.Ленина, д.1", "8(495)123-45-67" ,true);
     }
 
     @RequestMapping(value = "/update", method = POST)
-    public String update() {
-        return "organization update";
+    public String update(@RequestBody OrganizationUpdateRequest update) {
+        return "success";
     }
 
     @RequestMapping(value = "/save", method = POST)
-    public String save() {
-        return "organization save";
+    public String save(@RequestBody OrganizationSaveRequest save) {
+        return "success";
     }
 
-    @RequestMapping(value = "/dog", method = GET)
-    public String dog(@RequestParam(value = "id") Integer id,  Model model) {
-        model.addAttribute("id", id);
-
-        return "dog";
-    }
+/*   @RequestMapping(value = "/test", method = POST)
+    public OrganizationView test(@RequestBody OrganizationView organization) {
+        return organization;
+    } */ 
 }
