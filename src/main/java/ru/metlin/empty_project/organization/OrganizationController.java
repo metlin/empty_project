@@ -1,32 +1,43 @@
 package ru.metlin.empty_project.organization;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import java.util.Arrays;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/organization")
 public class OrganizationController {
 
     @GetMapping(value = "/{id}")
-    private String getOrganizaion() {
-        return "getOrganizaion";
+    private Organization getOrganizaion(@PathVariable Long id) {
+        Organization organization = new Organization();
+        organization.setId(42L);
+        organization.setName("Garprom");
+        return organization;
     }
 
     @PostMapping(value = "/save")
-    private String createOrganization() {
-        return "createOrganization";
+    private Organization createOrganization(@RequestBody Organization request) {
+        Organization organization = new Organization();
+        organization.setId(42L);
+        organization.setName("Garprom");
+        return organization;
     }
 
     @PostMapping(value = "/update")
-    private String updateOrganization() {
-        return "updateOrganization";
+    private Organization updateOrganization(@RequestBody Organization request) {
+        Organization organization = new Organization();
+        organization.setId(42L);
+        organization.setName("Garprom");
+        return organization;
     }
 
     @GetMapping(value = "/list")
-    private String getOrganizationList() {
-        return "getOrganizationList";
+    private List<Organization> getOrganizationList() {
+        Organization organization = new Organization();
+        organization.setId(42L);
+        organization.setName("Garprom");
+        return Arrays.asList(organization, organization, organization);
     }
 }
