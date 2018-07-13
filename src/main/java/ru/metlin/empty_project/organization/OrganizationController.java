@@ -1,25 +1,20 @@
 package ru.metlin.empty_project.organization;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import java.util.Arrays;
-import java.util.List;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/api/organization")
 public class OrganizationController {
 
+    @Autowired
+    private OrganizationRepository organizationRepository;
+
     @GetMapping(value = "/{id}")
-    private Organization getOrganizaion(@PathVariable Long id) {
-        Organization organization = new Organization();
-        organization.setId(id);
-        organization.setName("Garprom");
-        organization.setFullName("PAO Garprom");
-        organization.setActive(true);
-        organization.setAddress("RF, Moskow");
-        organization.setInn(43434343123L);
-        organization.setKpp(456784224L);
-        organization.setPhone("8(495)123-45-67");
-        return organization;
+    private Optional<Organization> getOrganization(@PathVariable Long id) {
+        return organizationRepository.findById(id);
     }
 
     @PostMapping(value = "/save")
@@ -33,12 +28,7 @@ public class OrganizationController {
     }
 
     @PostMapping(value = "/list")
-    private List<Organization> getOrganizationList(@RequestBody OrganizationListRequest request) {
-        Organization organization = new Organization();
-        organization.setId(42L);
-        organization.setName("Garprom");
-        organization.setActive(true);
-
-        return Arrays.asList(organization, organization, organization);
+    private Iterable<Organization> getOrganizationList(@RequestBody OrganizationListRequest request) {
+        return organizationRepository.findAll();
     }
 }
