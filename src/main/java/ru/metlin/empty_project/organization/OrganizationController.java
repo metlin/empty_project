@@ -1,10 +1,6 @@
 package ru.metlin.empty_project.organization;
 
-import com.sun.tools.corba.se.idl.constExpr.Or;
 import org.springframework.web.bind.annotation.*;
-import ru.metlin.empty_project.organization.Organization;
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,21 +13,27 @@ public class OrganizationController {
         Organization organization = new Organization();
         organization.setId(id);
         organization.setName("Garprom");
+        organization.setFullName("PAO Garprom");
+        organization.setActive(true);
+        organization.setAdress("RF, Moskow");
+        organization.setInn(43434343123L);
+        organization.setKpp(456784224L);
+        organization.setPhone("8(495)123-45-67");
         return organization;
     }
 
     @PostMapping(value = "/save")
-    private String createOrganization(@RequestBody Organization request) {
+    private String createOrganization(@RequestBody SaveOrganizationRequest request) {
         return "success";
     }
 
     @PostMapping(value = "/update")
-    private String updateOrganization(@RequestBody Organization request) {
+    private String updateOrganization(@RequestBody UpdateOrganizationRequest request) {
         return "success";
     }
 
     @PostMapping(value = "/list")
-    private List<Organization> getOrganizationList(@RequestBody Organization request) {
+    private List<Organization> getOrganizationList(@RequestBody OrganizationListRequest request) {
         Organization organization = new Organization();
         organization.setId(42L);
         organization.setName("Garprom");
