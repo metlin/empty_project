@@ -1,13 +1,13 @@
 package ru.metlin.empty_project.office;
 
 public class OfficeListRequest {
-    private Long orgid;
+    private Long orgId;
     private String name;
     private Boolean isActive;
     private String phone;
 
     public OfficeListRequest(Long orgid, String name, Boolean isActive, String phone) {
-        this.orgid = orgid;
+        this.orgId = orgid;
         this.name = name;
         this.isActive = isActive;
         this.phone = phone;
@@ -17,11 +17,11 @@ public class OfficeListRequest {
     }
 
     public Long getOrgid() {
-        return orgid;
+        return orgId;
     }
 
-    public void setOrgid(Long orgid) {
-        this.orgid = orgid;
+    public void setOrgid(Long orgId) {
+        this.orgId = orgId;
     }
 
     public String getName() {

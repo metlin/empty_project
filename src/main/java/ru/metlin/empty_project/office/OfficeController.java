@@ -24,7 +24,7 @@ public class OfficeController {
         Office office = new Office();
         office.setId(id);
         office.setName("Garprom");
-        office.setAdress("RF, Moskow");
+        office.setAddress("RF, Moskow");
         office.setPhone("8(495)123-45-67");
         office.setActive(true);
 

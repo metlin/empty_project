@@ -15,7 +15,7 @@ public class OrganizationController {
         organization.setName("Garprom");
         organization.setFullName("PAO Garprom");
         organization.setActive(true);
-        organization.setAdress("RF, Moskow");
+        organization.setAddress("RF, Moskow");
         organization.setInn(43434343123L);
         organization.setKpp(456784224L);
         organization.setPhone("8(495)123-45-67");

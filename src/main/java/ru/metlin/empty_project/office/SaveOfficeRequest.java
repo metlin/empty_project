@@ -3,13 +3,13 @@ package ru.metlin.empty_project.office;
 public class SaveOfficeRequest {
     private String name;
     private Boolean isActive;
-    private String adress;
+    private String address;
     private String phone;
 
-    public SaveOfficeRequest(String name, Boolean isActive, String adress, String phone) {
+    public SaveOfficeRequest(String name, Boolean isActive, String address, String phone) {
         this.name = name;
         this.isActive = isActive;
-        this.adress = adress;
+        this.address = address;
         this.phone = phone;
     }
 
@@ -32,12 +32,12 @@ public class SaveOfficeRequest {
         isActive = active;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getPhone() {

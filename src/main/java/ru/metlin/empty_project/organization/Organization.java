@@ -8,7 +8,7 @@ public class Organization {
     private String fullName;
     private Long inn;
     private Long kpp;
-    private String adress;
+    private String address;
     private String phone;
 
     public Organization(Long id, String name, Boolean isActive, String fullName, Long inn, Long kpp, String adress, String phone) {
@@ -18,7 +18,7 @@ public class Organization {
         this.fullName = fullName;
         this.inn = inn;
         this.kpp = kpp;
-        this.adress = adress;
+        this.address = adress;
         this.phone = phone;
     }
 
@@ -72,12 +72,12 @@ public class Organization {
         this.kpp = kpp;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getPhone() {
