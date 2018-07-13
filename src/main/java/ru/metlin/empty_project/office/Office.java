@@ -1,7 +1,16 @@
 package ru.metlin.empty_project.office;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Office {
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
+
     private String name;
     private Boolean isActive;
     private String address;
