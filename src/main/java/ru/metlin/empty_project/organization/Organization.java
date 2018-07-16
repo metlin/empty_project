@@ -20,18 +20,39 @@ public class Organization {
     private String address;
     private String phone;
 
-    public Organization(Long id, String name, Boolean isActive, String fullName, Long inn, Long kpp, String adress, String phone) {
+    public Organization(Long id, String name, Boolean isActive, String fullName, Long inn, Long kpp, String address, String phone) {
         this.id = id;
         this.name = name;
         this.isActive = isActive;
         this.fullName = fullName;
         this.inn = inn;
         this.kpp = kpp;
-        this.address = adress;
+        this.address = address;
         this.phone = phone;
     }
 
     public Organization() {}
+
+    public Organization(SaveOrganizationRequest request) {
+        this.name = request.getName();
+        this.isActive = request.getActive();
+        this.fullName = request.getFullName();
+        this.inn = request.getInn();
+        this.kpp = request.getKpp();
+        this.address = request.getAddress();
+        this.phone = request.getPhone();
+    }
+
+    public Organization(UpdateOrganizationRequest request) {
+        this.id = request.getId();
+        this.name = request.getName();
+        this.isActive = request.getActive();
+        this.fullName = request.getFullName();
+        this.inn = request.getInn();
+        this.kpp = request.getKpp();
+        this.address = request.getAddress();
+        this.phone = request.getPhone();
+    }
 
     public Long getId() {
         return id;

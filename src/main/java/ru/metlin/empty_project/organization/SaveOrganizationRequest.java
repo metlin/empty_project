@@ -6,17 +6,17 @@ public class SaveOrganizationRequest {
     private String fullName;
     private Long inn;
     private Long kpp;
-    private String adress;
+    private String address;
     private String phone;
 
     public SaveOrganizationRequest(String name, Boolean isActive, String fullName,
-                                   Long inn, Long kpp, String adress, String phone) {
+                                   Long inn, Long kpp, String address, String phone) {
         this.name = name;
         this.isActive = isActive;
         this.fullName = fullName;
         this.inn = inn;
         this.kpp = kpp;
-        this.adress = adress;
+        this.address = address;
         this.phone = phone;
     }
 
@@ -63,12 +63,12 @@ public class SaveOrganizationRequest {
         this.kpp = kpp;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getPhone() {

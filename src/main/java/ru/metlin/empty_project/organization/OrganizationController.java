@@ -1,7 +1,12 @@
 package ru.metlin.empty_project.organization;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
@@ -18,13 +23,15 @@ public class OrganizationController {
     }
 
     @PostMapping(value = "/save")
-    private String createOrganization(@RequestBody SaveOrganizationRequest request) {
-        return "success";
+    private Organization createOrganization(@RequestBody SaveOrganizationRequest request) {
+        Organization organization = new Organization(request);
+        return organizationRepository.save(organization);
     }
 
     @PostMapping(value = "/update")
-    private String updateOrganization(@RequestBody UpdateOrganizationRequest request) {
-        return "success";
+    private Organization updateOrganization(@RequestBody UpdateOrganizationRequest request) {
+        Organization organization = new Organization(request);
+        return organizationRepository.save(organization);
     }
 
     @PostMapping(value = "/list")
