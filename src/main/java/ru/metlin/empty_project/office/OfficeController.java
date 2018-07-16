@@ -9,7 +9,7 @@ import java.util.List;
 public class OfficeController {
 
     @PostMapping(value = "/list/{orgId}")
-    private List<Office> getOrganizationList(@RequestBody OfficeListRequest request, @PathVariable Long orgId) {
+    private List<Office> getOffiiceList(@RequestBody OfficeListRequest request, @PathVariable Long orgId) {
         Office office = new Office();
         office.setId(42L);
         office.setName("Garprom");
