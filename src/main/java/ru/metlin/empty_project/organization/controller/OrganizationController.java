@@ -1,4 +1,4 @@
-package ru.metlin.empty_project.organization;
+package ru.metlin.empty_project.organization.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.metlin.empty_project.organization.model.Organization;
+import ru.metlin.empty_project.organization.request.OrganizationListRequest;
+import ru.metlin.empty_project.organization.model.OrganizationRepository;
+import ru.metlin.empty_project.organization.request.SaveOrganizationRequest;
+import ru.metlin.empty_project.organization.request.UpdateOrganizationRequest;
 
 import java.util.Optional;
 

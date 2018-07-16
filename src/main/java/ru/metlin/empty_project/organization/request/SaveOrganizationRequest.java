@@ -1,17 +1,6 @@
-package ru.metlin.empty_project.organization;
+package ru.metlin.empty_project.organization.request;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-@Entity
-public class Organization {
-
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long id;
-
+public class SaveOrganizationRequest {
     private String name;
     private Boolean isActive;
     private String fullName;
@@ -20,8 +9,8 @@ public class Organization {
     private String address;
     private String phone;
 
-    public Organization(Long id, String name, Boolean isActive, String fullName, Long inn, Long kpp, String address, String phone) {
-        this.id = id;
+    public SaveOrganizationRequest(String name, Boolean isActive, String fullName,
+                                   Long inn, Long kpp, String address, String phone) {
         this.name = name;
         this.isActive = isActive;
         this.fullName = fullName;
@@ -31,35 +20,7 @@ public class Organization {
         this.phone = phone;
     }
 
-    public Organization() {}
-
-    public Organization(SaveOrganizationRequest request) {
-        this.name = request.getName();
-        this.isActive = request.getActive();
-        this.fullName = request.getFullName();
-        this.inn = request.getInn();
-        this.kpp = request.getKpp();
-        this.address = request.getAddress();
-        this.phone = request.getPhone();
-    }
-
-    public Organization(UpdateOrganizationRequest request) {
-        this.id = request.getId();
-        this.name = request.getName();
-        this.isActive = request.getActive();
-        this.fullName = request.getFullName();
-        this.inn = request.getInn();
-        this.kpp = request.getKpp();
-        this.address = request.getAddress();
-        this.phone = request.getPhone();
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public SaveOrganizationRequest() {
     }
 
     public String getName() {

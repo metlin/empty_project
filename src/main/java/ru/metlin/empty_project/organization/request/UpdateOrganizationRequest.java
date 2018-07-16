@@ -1,6 +1,7 @@
-package ru.metlin.empty_project.organization;
+package ru.metlin.empty_project.organization.request;
 
-public class SaveOrganizationRequest {
+public class UpdateOrganizationRequest {
+    private Long id;
     private String name;
     private Boolean isActive;
     private String fullName;
@@ -9,8 +10,9 @@ public class SaveOrganizationRequest {
     private String address;
     private String phone;
 
-    public SaveOrganizationRequest(String name, Boolean isActive, String fullName,
-                                   Long inn, Long kpp, String address, String phone) {
+    public UpdateOrganizationRequest(Long id, String name, Boolean isActive, String fullName,
+                                     Long inn, Long kpp, String address, String phone) {
+        this.id = id;
         this.name = name;
         this.isActive = isActive;
         this.fullName = fullName;
@@ -20,7 +22,17 @@ public class SaveOrganizationRequest {
         this.phone = phone;
     }
 
-    public SaveOrganizationRequest() {
+    public UpdateOrganizationRequest() {
+    }
+
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

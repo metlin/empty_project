@@ -1,4 +1,4 @@
-package ru.metlin.empty_project.organization;
+package ru.metlin.empty_project.organization.request;
 
 public class OrganizationListRequest {
     private Long inn;
