@@ -1,40 +1,21 @@
-package ru.metlin.empty_project.office;
+package ru.metlin.empty_project.office.request;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-@Entity
-public class Office {
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long id;
-
+public class SaveOfficeRequest {
     private String name;
     private Boolean isActive;
     private String address;
     private String phone;
     private Long orgId;
 
-    public Office() {
+    public SaveOfficeRequest() {
     }
 
-    public Office(Long id, String name, Boolean isActive, String address, String phone, Long orgId) {
-        this.id = id;
+    public SaveOfficeRequest(String name, Boolean isActive, String address, String phone, Long orgId) {
         this.name = name;
         this.isActive = isActive;
         this.address = address;
         this.phone = phone;
         this.orgId = orgId;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {

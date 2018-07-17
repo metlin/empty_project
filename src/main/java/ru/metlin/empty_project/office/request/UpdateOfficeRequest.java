@@ -1,17 +1,17 @@
-package ru.metlin.empty_project.office;
+package ru.metlin.empty_project.office.request;
 
 public class UpdateOfficeRequest {
     private Long id;
     private String name;
     private Boolean isActive;
-    private String adress;
+    private String address;
     private String phone;
 
-    public UpdateOfficeRequest(Long id, String name, Boolean isActive, String adress, String phone) {
+    public UpdateOfficeRequest(Long id, String name, Boolean isActive, String address, String phone) {
         this.id = id;
         this.name = name;
         this.isActive = isActive;
-        this.adress = adress;
+        this.address = address;
         this.phone = phone;
     }
 
@@ -42,12 +42,12 @@ public class UpdateOfficeRequest {
         isActive = active;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getPhone() {

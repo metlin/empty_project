@@ -1,19 +1,27 @@
-package ru.metlin.empty_project.office;
+package ru.metlin.empty_project.office.request;
 
-public class SaveOfficeRequest {
+public class OfficeListRequest {
+    private Long orgId;
     private String name;
     private Boolean isActive;
-    private String address;
     private String phone;
 
-    public SaveOfficeRequest(String name, Boolean isActive, String address, String phone) {
+    public OfficeListRequest(Long orgid, String name, Boolean isActive, String phone) {
+        this.orgId = orgid;
         this.name = name;
         this.isActive = isActive;
-        this.address = address;
         this.phone = phone;
     }
 
-    public SaveOfficeRequest() {
+    public OfficeListRequest() {
+    }
+
+    public Long getOrgid() {
+        return orgId;
+    }
+
+    public void setOrgid(Long orgId) {
+        this.orgId = orgId;
     }
 
     public String getName() {
@@ -30,14 +38,6 @@ public class SaveOfficeRequest {
 
     public void setActive(Boolean active) {
         isActive = active;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public String getPhone() {
