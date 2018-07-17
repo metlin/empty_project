@@ -53,7 +53,7 @@ public class User {
     public User(SaveUserRequest request) {
         this.firstName = request.getFirstName();
         this.secondName = request.getSecondName();
-        this.middleName = request.getSecondName();
+        this.middleName = request.getMiddleName();
         this.position = request.getPosition();
         this.phone = request.getPhone();
         this.docName = request.getDocName();
