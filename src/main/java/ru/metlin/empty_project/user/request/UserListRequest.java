@@ -1,33 +1,35 @@
-package ru.metlin.empty_project.user;
+package ru.metlin.empty_project.user.request;
 
-public class SaveUserRequest {
+public class UserListRequest {
 
+    private Long officeId;
     private String firstName;
     private String secondName;
     private String middleName;
     private String position;
-    private String phone;
-    private String docName;
-    private Long docNumber;
     private Long docDate;
     private Long sitizenshipCode;
-    private Boolean isIdentified;
 
-    public SaveUserRequest(String firstName, String secondName, String middleName, String position,
-                           String phone, String docName, Long docNumber, Long docDate, Long sitizenshipCode, Boolean isIdentified) {
+    public UserListRequest(Long officeId, String firstName, String secondName, String middleName,
+                           String position, Long docDate, Long sitizenshipCode) {
+        this.officeId = officeId;
         this.firstName = firstName;
         this.secondName = secondName;
         this.middleName = middleName;
         this.position = position;
-        this.phone = phone;
-        this.docName = docName;
-        this.docNumber = docNumber;
         this.docDate = docDate;
         this.sitizenshipCode = sitizenshipCode;
-        this.isIdentified = isIdentified;
     }
 
-    public SaveUserRequest() {
+    public UserListRequest() {
+    }
+
+    public Long getOfficeId() {
+        return officeId;
+    }
+
+    public void setOfficeId(Long officeId) {
+        this.officeId = officeId;
     }
 
     public String getFirstName() {
@@ -62,30 +64,6 @@ public class SaveUserRequest {
         this.position = position;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getDocName() {
-        return docName;
-    }
-
-    public void setDocName(String docName) {
-        this.docName = docName;
-    }
-
-    public Long getDocNumber() {
-        return docNumber;
-    }
-
-    public void setDocNumber(Long docNumber) {
-        this.docNumber = docNumber;
-    }
-
     public Long getDocDate() {
         return docDate;
     }
@@ -101,12 +79,5 @@ public class SaveUserRequest {
     public void setSitizenshipCode(Long sitizenshipCode) {
         this.sitizenshipCode = sitizenshipCode;
     }
-
-    public Boolean getIdentified() {
-        return isIdentified;
-    }
-
-    public void setIdentified(Boolean identified) {
-        isIdentified = identified;
-    }
 }
+

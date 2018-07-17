@@ -1,8 +1,7 @@
-package ru.metlin.empty_project.user;
+package ru.metlin.empty_project.user.request;
 
-public class UpdateUserRequest {
+public class SaveUserRequest {
 
-    private Long id;
     private String firstName;
     private String secondName;
     private String middleName;
@@ -14,9 +13,8 @@ public class UpdateUserRequest {
     private Long sitizenshipCode;
     private Boolean isIdentified;
 
-    public UpdateUserRequest(Long id, String firstName, String secondName, String middleName, String position,
-                             String phone, String docName, Long docNumber, Long docDate, Long sitizenshipCode, Boolean isIdentified) {
-        this.id = id;
+    public SaveUserRequest(String firstName, String secondName, String middleName, String position,
+                           String phone, String docName, Long docNumber, Long docDate, Long sitizenshipCode, Boolean isIdentified) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.middleName = middleName;
@@ -29,15 +27,7 @@ public class UpdateUserRequest {
         this.isIdentified = isIdentified;
     }
 
-    public UpdateUserRequest() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public SaveUserRequest() {
     }
 
     public String getFirstName() {

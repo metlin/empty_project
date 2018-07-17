@@ -25,7 +25,7 @@ public class OfficeController {
     private OfficeRepository officeRepository;
 
     @PostMapping(value = "/list/{orgId}")
-    private Iterable<Office> getOffiiceList(@RequestBody OfficeListRequest request, @PathVariable Long orgId) {
+    private Iterable<Office> getOfficeList(@RequestBody OfficeListRequest request, @PathVariable Long orgId) {
         return officeRepository.findByOrgId(orgId);
 }
 

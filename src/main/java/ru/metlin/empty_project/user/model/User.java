@@ -1,4 +1,7 @@
-package ru.metlin.empty_project.user;
+package ru.metlin.empty_project.user.model;
+
+import ru.metlin.empty_project.user.request.SaveUserRequest;
+import ru.metlin.empty_project.user.request.UpdateUserRequest;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -45,6 +48,33 @@ public class User {
     }
 
     public User() {
+    }
+
+    public User(SaveUserRequest request) {
+        this.firstName = request.getFirstName();
+        this.secondName = request.getSecondName();
+        this.middleName = request.getSecondName();
+        this.position = request.getPosition();
+        this.phone = request.getPhone();
+        this.docName = request.getDocName();
+        this.docNumber = request.getDocNumber();
+        this.docDate = request.getDocDate();
+        this.sitizenshipCode = request.getSitizenshipCode();
+        this.isIdentified = request.getIdentified();
+    }
+
+    public User(UpdateUserRequest request) {
+        this.id = request.getId();
+        this.firstName = request.getFirstName();
+        this.secondName = request.getSecondName();
+        this.middleName = request.getMiddleName();
+        this.position = request.getPosition();
+        this.phone = request.getPhone();
+        this.docName = request.getDocName();
+        this.docNumber = request.getDocNumber();
+        this.docDate = request.getDocDate();
+        this.sitizenshipCode = request.getSitizenshipCode();
+        this.isIdentified = request.getIdentified();
     }
 
     public Long getId() {
