@@ -24,9 +24,9 @@ public class OfficeController {
     @Autowired
     private OfficeRepository officeRepository;
 
-    @PostMapping(value = "/list/{orgId}")
-    private Iterable<Office> getOfficeList(@RequestBody OfficeListRequest request, @PathVariable Long orgId) {
-        return officeRepository.findByOrgId(orgId);
+    @PostMapping(value = "/list")
+    private Iterable<Office> getOfficeList(@RequestBody OfficeListRequest request) {
+        return officeRepository.findAll();
 }
 
     @GetMapping(value = "/{id}")
