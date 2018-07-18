@@ -1,9 +1,8 @@
-package ru.metlin.empty_project.organization.responce;
+package ru.metlin.empty_project.organization.response;
 
 import ru.metlin.empty_project.organization.model.Organization;
-import ru.metlin.empty_project.organization.model.OrganizationRepository;
 
-public class GetOrganizationResponce {
+public class OrganizationResponse {
 
     private Long id;
     private String name;
@@ -14,8 +13,8 @@ public class GetOrganizationResponce {
     private String address;
     private String phone;
 
-    public GetOrganizationResponce(Long id, String name, Boolean isActive, String fullName, Long inn, Long kpp,
-                                   String address, String phone) {
+    public OrganizationResponse(Long id, String name, Boolean isActive, String fullName, Long inn, Long kpp,
+                                String address, String phone) {
         this.id = id;
         this.name = name;
         this.isActive = isActive;
@@ -26,7 +25,18 @@ public class GetOrganizationResponce {
         this.phone = phone;
     }
 
-    public GetOrganizationResponce() {
+    public OrganizationResponse(Organization organization) {
+        this.id = organization.getId();
+        this.name = organization.getName();
+        this.isActive = organization.getActive();
+        this.fullName = organization.getFullName();
+        this.inn = organization.getInn();
+        this.kpp = organization.getKpp();
+        this.address = organization.getAddress();
+        this.phone = organization.getPhone();
+    }
+
+    public OrganizationResponse() {
     }
 
     public Long getId() {
