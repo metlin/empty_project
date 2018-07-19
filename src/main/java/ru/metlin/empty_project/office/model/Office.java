@@ -3,21 +3,38 @@ package ru.metlin.empty_project.office.model;
 import ru.metlin.empty_project.office.request.SaveOfficeRequest;
 import ru.metlin.empty_project.office.request.UpdateOfficeRequest;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Version;
 
 @Entity
+@Table(name = "Office")
 public class Office {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name = "Id")
     private Long id;
 
+    @Version
+    private Integer version;
+
+    @Column(name = "Name", length = 50, nullable = false)
     private String name;
+
+    @Column(name = "Active")
     private Boolean isActive;
+
+    @Column(name = "Address", length = 120, nullable = false)
     private String address;
+
+    @Column(name = "Phone", length = 50, nullable = false)
     private String phone;
+
+    @Column(name = "OrgID", nullable = false)
     private Long orgId;
 
     public Office() {

@@ -13,6 +13,7 @@ import ru.metlin.empty_project.office.model.OfficeRepository;
 import ru.metlin.empty_project.office.request.OfficeListRequest;
 import ru.metlin.empty_project.office.request.SaveOfficeRequest;
 import ru.metlin.empty_project.office.request.UpdateOfficeRequest;
+import ru.metlin.empty_project.office.service.OfficeService;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -21,28 +22,30 @@ import java.util.Optional;
 @RequestMapping(value = "/api/office")
 public class OfficeController {
 
+    private OfficeService officeService;
+
     @Autowired
-    private OfficeRepository officeRepository;
+    public OfficeController(OfficeService officeService) {
+        this.officeService = officeService;
+    }
 
     @PostMapping(value = "/list")
     private Iterable<Office> getOfficeList(@RequestBody OfficeListRequest request) {
-        return officeRepository.findAll();
+        return officeService.findAll();
 }
 
     @GetMapping(value = "/{id}")
-    private Optional<Office> getOffice(@PathVariable Long id) {
-        return officeRepository.findById(id);
+    private Office getOffice(@PathVariable Long id) {
+        return officeService.findById(id);
     }
 
     @PostMapping(value = "/save")
     private Office createOffice(@RequestBody SaveOfficeRequest request) {
-        Office office = new Office(request);
-        return officeRepository.save(office);
+        return officeService.save(request);
     }
 
     @PostMapping(value = "/update")
     private Office updateOffice(@RequestBody UpdateOfficeRequest request) {
-        Office office = new Office(request);
-        return officeRepository.save(office);
+        return officeService.save(request);
     }
 }
