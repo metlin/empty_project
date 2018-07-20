@@ -9,14 +9,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.metlin.empty_project.office.model.Office;
-import ru.metlin.empty_project.office.model.OfficeRepository;
 import ru.metlin.empty_project.office.request.OfficeListRequest;
 import ru.metlin.empty_project.office.request.SaveOfficeRequest;
 import ru.metlin.empty_project.office.request.UpdateOfficeRequest;
 import ru.metlin.empty_project.office.service.OfficeService;
-
-import java.util.ArrayList;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/api/office")

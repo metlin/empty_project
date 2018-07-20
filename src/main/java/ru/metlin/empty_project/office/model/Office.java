@@ -16,25 +16,22 @@ import javax.persistence.Version;
 public class Office {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name = "Id")
+    @Column(name = "id")
     private Long id;
 
-    @Version
-    private Integer version;
-
-    @Column(name = "Name", length = 50, nullable = false)
+    @Column(name = "name", length = 50, nullable = false)
     private String name;
 
-    @Column(name = "Active")
+    @Column(name = "active")
     private Boolean isActive;
 
-    @Column(name = "Address", length = 120, nullable = false)
+    @Column(name = "address", length = 50, nullable = false)
     private String address;
 
-    @Column(name = "Phone", length = 50, nullable = false)
+    @Column(name = "phone", length = 50, nullable = false)
     private String phone;
 
-    @Column(name = "OrgID", nullable = false)
+    @Column(name = "org_id", nullable = false)
     private Long orgId;
 
     public Office() {
