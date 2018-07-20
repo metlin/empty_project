@@ -14,6 +14,7 @@ import javax.persistence.Version;
 @Entity
 @Table(name = "Office")
 public class Office {
+
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "id")

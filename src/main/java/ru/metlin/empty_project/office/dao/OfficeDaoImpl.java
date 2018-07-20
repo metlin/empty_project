@@ -19,7 +19,7 @@ public class OfficeDaoImpl implements OfficeDao {
 
     @Override
     public Iterable<Office> all() {
-        TypedQuery<Office> query = entityManager.createQuery("SELECT p FROM office p", Office.class);
+        TypedQuery<Office> query = entityManager.createQuery("SELECT o FROM Office o", Office.class);
         return query.getResultList();
     }
 
