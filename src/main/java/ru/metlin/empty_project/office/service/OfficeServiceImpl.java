@@ -29,7 +29,7 @@ public class OfficeServiceImpl implements OfficeService {
     @Override
     @Transactional
     public Office save(UpdateOfficeRequest request) {
-        Office office = new Office();
+        Office office = new Office(request);
         return officeDao.add(office);
     }
 

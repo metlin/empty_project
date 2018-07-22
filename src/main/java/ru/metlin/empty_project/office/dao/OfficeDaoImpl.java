@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import ru.metlin.empty_project.office.model.Office;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 @Repository
@@ -30,6 +31,7 @@ public class OfficeDaoImpl implements OfficeDao {
 
     @Override
     public Office add(Office office) {
-        return entityManager.find(Office.class, office);
+        entityManager.persist(office);
+        return office;
     }
 }
