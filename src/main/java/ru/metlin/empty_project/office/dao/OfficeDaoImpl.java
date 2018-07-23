@@ -31,7 +31,12 @@ public class OfficeDaoImpl implements OfficeDao {
 
     @Override
     public Office add(Office office) {
-        entityManager.persist(office);
-        return office;
+       if (office.getId() == null) {
+           entityManager.persist(office);
+       } else {
+           entityManager.merge(office);
+       }
+
+       return office;
     }
 }
