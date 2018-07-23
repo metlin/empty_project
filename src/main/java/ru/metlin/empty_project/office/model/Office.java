@@ -61,6 +61,7 @@ public class Office {
         this.isActive = request.getActive();
         this.address = request.getAddress();
         this.phone = request.getPhone();
+        this.orgId = request.getOrgId();
     }
 
     public Long getId() {

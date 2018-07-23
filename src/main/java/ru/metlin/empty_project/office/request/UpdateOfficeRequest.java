@@ -6,16 +6,18 @@ public class UpdateOfficeRequest {
     private Boolean isActive;
     private String address;
     private String phone;
+    private Long orgId;
 
-    public UpdateOfficeRequest(Long id, String name, Boolean isActive, String address, String phone) {
+    public UpdateOfficeRequest() {
+    }
+
+    public UpdateOfficeRequest(Long id, String name, Boolean isActive, String address, String phone, Long orgId) {
         this.id = id;
         this.name = name;
         this.isActive = isActive;
         this.address = address;
         this.phone = phone;
-    }
-
-    public UpdateOfficeRequest() {
+        this.orgId = orgId;
     }
 
     public Long getId() {
@@ -56,5 +58,13 @@ public class UpdateOfficeRequest {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public Long getOrgId() {
+        return orgId;
+    }
+
+    public void setOrgId(Long orgId) {
+        this.orgId = orgId;
     }
 }

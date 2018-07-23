@@ -1,9 +1,23 @@
 package ru.metlin.empty_project.handbooks;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Document {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name = "user_id")
     Long user_id;
+
+    @Column(name = "name", length = 50, nullable = false)
     String name;
+
+    @Column(name = "code", length = 10, nullable = false)
     String code;
 
     public Document(Long user_id, String name, String code) {
