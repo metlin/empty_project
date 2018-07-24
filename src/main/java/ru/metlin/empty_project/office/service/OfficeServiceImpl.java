@@ -23,6 +23,10 @@ public class OfficeServiceImpl implements OfficeService {
     @Transactional
     public Office save(SaveOfficeRequest request) {
         Office office = new Office(request);
+
+        if (office.getOrgId() == 0) {
+            return office;
+        }
         return officeDao.add(office);
     }
 
@@ -30,6 +34,23 @@ public class OfficeServiceImpl implements OfficeService {
     @Transactional
     public Office save(UpdateOfficeRequest request) {
         Office office = new Office(request);
+
+        if (office.getOrgId() == 0) {
+            return office;
+        }
+
+        if (office.getId() == 0) {
+            return office;
+        }
+
+        if (office.getName() == null) {
+            return office;
+        }
+
+        if (office.getAddress() == null) {
+            return office;
+        }
+
         return officeDao.add(office);
     }
 
