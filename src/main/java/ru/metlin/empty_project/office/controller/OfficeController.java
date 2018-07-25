@@ -36,12 +36,12 @@ public class OfficeController {
     }
 
     @PostMapping(value = "/save")
-    private Office createOffice(@RequestBody SaveOfficeRequest request) {
+    private Office createOffice(@RequestBody SaveOfficeRequest request) throws Exception {
         return officeService.save(request);
     }
 
     @PostMapping(value = "/update")
-    private Office updateOffice(@RequestBody UpdateOfficeRequest request) {
+    private Office updateOffice(@RequestBody UpdateOfficeRequest request) throws Exception {
         return officeService.save(request);
     }
 }

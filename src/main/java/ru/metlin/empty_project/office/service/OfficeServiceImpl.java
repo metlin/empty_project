@@ -1,5 +1,6 @@
 package ru.metlin.empty_project.office.service;
 
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.metlin.empty_project.office.dao.OfficeDao;
@@ -21,34 +22,35 @@ public class OfficeServiceImpl implements OfficeService {
 
     @Override
     @Transactional
-    public Office save(SaveOfficeRequest request) {
+    public Office save(SaveOfficeRequest request) throws NoSuchFieldException {
         Office office = new Office(request);
 
         if (office.getOrgId() == 0) {
-            return office;
+            throw new NoSuchFieldException("this office does not exist");
         }
+
         return officeDao.add(office);
     }
 
     @Override
     @Transactional
-    public Office save(UpdateOfficeRequest request) {
+    public Office save(UpdateOfficeRequest request) throws NoSuchFieldException {
         Office office = new Office(request);
 
         if (office.getOrgId() == 0) {
-            return office;
+            throw new NoSuchFieldException("this office does not exist");
         }
 
         if (office.getId() == 0) {
-            return office;
+            throw new NoSuchFieldException("this office does not exist");
         }
 
         if (office.getName() == null) {
-            return office;
+            throw new NoSuchFieldException("this office does not exist");
         }
 
         if (office.getAddress() == null) {
-            return office;
+            throw new NoSuchFieldException("this office does not exist");
         }
 
         return officeDao.add(office);

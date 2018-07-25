@@ -6,9 +6,9 @@ import ru.metlin.empty_project.office.request.UpdateOfficeRequest;
 
 public interface OfficeService {
 
-    Office save(SaveOfficeRequest request);
+    Office save(SaveOfficeRequest request) throws Exception;
 
-    Office save(UpdateOfficeRequest request);
+    Office save(UpdateOfficeRequest request) throws Exception;
 
     Iterable<Office> findAll();
 
