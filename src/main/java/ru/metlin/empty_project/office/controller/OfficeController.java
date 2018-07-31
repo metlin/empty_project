@@ -33,7 +33,7 @@ public class OfficeController {
 }
 
     @GetMapping(value = "/{id}")
-    private Response<Office> getOffice(@PathVariable Long id) throws Exception {
+    private Response<Office> getOffice(@PathVariable Long id) {
         try {
             return new Response<Office>(officeService.findById(id));
         } catch (Exception e) {
@@ -42,7 +42,7 @@ public class OfficeController {
     }
 
     @PostMapping(value = "/save")
-    private Response<SuccessView> createOffice(@RequestBody SaveOfficeRequest request) throws Exception {
+    private Response<SuccessView> createOffice(@RequestBody SaveOfficeRequest request)  {
         try {
             return new Response<SuccessView>(officeService.save(request));
         } catch (Exception e) {
@@ -50,8 +50,12 @@ public class OfficeController {
         }
     }
 
- /*   @PostMapping(value = "/update")
-    private Office updateOffice(@RequestBody UpdateOfficeRequest request) throws Exception {
-        return officeService.save(request);
-    } */
+    @PostMapping(value = "/update")
+    private Response<SuccessView> updateOffice(@RequestBody UpdateOfficeRequest request)  {
+        try {
+            return new Response<SuccessView>(officeService.update(request));
+        } catch (Exception e) {
+            return new Response<SuccessView>(e.getMessage());
+        }
+    }
 }

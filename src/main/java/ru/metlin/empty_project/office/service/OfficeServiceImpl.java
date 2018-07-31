@@ -34,29 +34,30 @@ public class OfficeServiceImpl implements OfficeService {
         return officeDao.add(office);
     }
 
- /*   @Override
+    @Override
     @Transactional
-    public Office save(UpdateOfficeRequest request) throws NoSuchFieldException {
+    public SuccessView update(UpdateOfficeRequest request) throws Exception {
+
+        if (request.getOrgId() == 0) {
+            throw new Exception("this office does not exist");
+        }
+
+        if (request.getId() == 0) {
+            throw new Exception("this office does not exist");
+        }
+
+        if (request.getName() == null) {
+            throw new Exception("this office does not exist");
+        }
+
+        if (request.getAddress() == null) {
+            throw new Exception("this office does not exist");
+        }
+
         Office office = new Office(request);
 
-        if (office.getOrgId() == 0) {
-            throw new NoSuchFieldException("this office does not exist");
-        }
-
-        if (office.getId() == 0) {
-            throw new NoSuchFieldException("this office does not exist");
-        }
-
-        if (office.getName() == null) {
-            throw new NoSuchFieldException("this office does not exist");
-        }
-
-        if (office.getAddress() == null) {
-            throw new NoSuchFieldException("this office does not exist");
-        }
-
         return officeDao.add(office);
-    } */
+    }
 
     @Override
     @Transactional

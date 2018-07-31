@@ -9,7 +9,7 @@ public interface OfficeService {
 
     SuccessView save(SaveOfficeRequest request) throws Exception;
 
- //   Office save(UpdateOfficeRequest request) throws Exception;
+    SuccessView update(UpdateOfficeRequest request) throws Exception;
 
     Iterable<Office> findAll();
 
