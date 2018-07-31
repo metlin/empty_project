@@ -2,7 +2,9 @@ package ru.metlin.empty_project.office.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import ru.metlin.empty_project.SuccessView;
 import ru.metlin.empty_project.office.model.Office;
+import ru.metlin.empty_project.office.request.UpdateOfficeRequest;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -30,13 +32,16 @@ public class OfficeDaoImpl implements OfficeDao {
     }
 
     @Override
-    public Office add(Office office) {
-       if (office.getId() == null) {
+    public SuccessView add(Office office) {
+        SuccessView successView = new SuccessView();
+
+        if (office.getId() == null) {
            entityManager.persist(office);
        } else {
-           entityManager.merge(office);
+           Office off = entityManager.find(Office.class, office.getId());
+           entityManager.persist(off);
        }
 
-       return office;
+       return successView;
     }
 }

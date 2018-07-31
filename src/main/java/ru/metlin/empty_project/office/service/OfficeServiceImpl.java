@@ -3,6 +3,7 @@ package ru.metlin.empty_project.office.service;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.metlin.empty_project.SuccessView;
 import ru.metlin.empty_project.office.dao.OfficeDao;
 import ru.metlin.empty_project.office.model.Office;
 import ru.metlin.empty_project.office.request.SaveOfficeRequest;
@@ -22,17 +23,18 @@ public class OfficeServiceImpl implements OfficeService {
 
     @Override
     @Transactional
-    public Office save(SaveOfficeRequest request) throws NoSuchFieldException {
-        Office office = new Office(request);
+    public SuccessView save(SaveOfficeRequest request) throws Exception {
 
-        if (office.getOrgId() == 0) {
-            throw new NoSuchFieldException("this office does not exist");
+        if (request.getOrgId() == 0) {
+            throw new Exception("this office does not exist");
         }
+
+        Office office = new Office(request);
 
         return officeDao.add(office);
     }
 
-    @Override
+ /*   @Override
     @Transactional
     public Office save(UpdateOfficeRequest request) throws NoSuchFieldException {
         Office office = new Office(request);
@@ -54,7 +56,7 @@ public class OfficeServiceImpl implements OfficeService {
         }
 
         return officeDao.add(office);
-    }
+    } */
 
     @Override
     @Transactional
@@ -64,7 +66,12 @@ public class OfficeServiceImpl implements OfficeService {
 
     @Override
     @Transactional
-    public Office findById(Long id) {
+    public Office findById(Long id) throws Exception {
+
+        if (id == 0) {
+            throw new Exception("this office does not exist");
+        }
+
         return officeDao.getById(id);
     }
 }
