@@ -3,6 +3,7 @@ package ru.metlin.empty_project.organization.model;
 import ru.metlin.empty_project.organization.request.SaveOrganizationRequest;
 import ru.metlin.empty_project.organization.request.UpdateOrganizationRequest;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,14 +14,28 @@ public class Organization {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
 
+    @Column(name = "name", length = 50, nullable = false)
     private String name;
+
+    @Column(name = "active")
     private Boolean isActive;
+
+    @Column(name = "full_name", length = 100, nullable = false)
     private String fullName;
+
+    @Column(name = "inn")
     private Long inn;
+
+    @Column(name = "kpp")
     private Long kpp;
+
+    @Column(name = "address", length = 100, nullable = false)
     private String address;
+
+    @Column(name = "phone", length = 20, nullable = false)
     private String phone;
 
     public Organization(Long id, String name, Boolean isActive, String fullName, Long inn, Long kpp, String address, String phone) {

@@ -37,7 +37,7 @@ public class OfficeDaoImpl implements OfficeDao {
 
         if (office.getId() == null) {
            entityManager.persist(office);
-       } else {
+        } else {
            Office off = entityManager.find(Office.class, office.getId());
            off.setName(office.getName());
            off.setActive(office.getActive());
