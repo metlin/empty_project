@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS Document (
 CREATE TABLE IF NOT EXISTS Country (
     country_id    BIGINT PRIMARY KEY AUTO_INCREMENT,
     country_code  VARCHAR(5) NOT NULL,
-    country_name  VARCHAR(50) NULL,
+    country_name  VARCHAR(50) NOT NULL,
     user_id       BIGINT  NOT NULL
 );
 

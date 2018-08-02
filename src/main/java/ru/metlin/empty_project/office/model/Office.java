@@ -20,7 +20,7 @@ public class Office {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name = "office_id")
     private Long id;
 
     @Column(name = "name", length = 50, nullable = false)
@@ -35,20 +35,19 @@ public class Office {
     @Column(name = "phone", length = 50, nullable = false)
     private String phone;
 
- //   @ManyToOne
- //   @JoinColumn(name = "org_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "org_id", nullable = false)
     private Organization organization;
 
     public Office() {
     }
 
-    public Office(Long id, String name, Boolean isActive, String address, String phone, Long orgId) {
+    public Office(Long id, String name, Boolean isActive, String address, String phone) {
         this.id = id;
         this.name = name;
         this.isActive = isActive;
         this.address = address;
         this.phone = phone;
-        this.orgId = orgId;
     }
 
     public Office(SaveOfficeRequest request) {
@@ -56,7 +55,6 @@ public class Office {
         this.isActive = request.getActive();
         this.address = request.getAddress();
         this.phone = request.getPhone();
-        this.orgId = request.getOrgId();
     }
 
     public Office(UpdateOfficeRequest request) {
@@ -65,7 +63,6 @@ public class Office {
         this.isActive = request.getActive();
         this.address = request.getAddress();
         this.phone = request.getPhone();
-        this.orgId = request.getOrgId();
     }
 
     public Long getId() {
@@ -108,11 +105,4 @@ public class Office {
         this.phone = phone;
     }
 
-    public Long getOrgId() {
-        return orgId;
-    }
-
-    public void setOrgId(Long orgId) {
-        this.orgId = orgId;
-    }
 }

@@ -1,14 +1,20 @@
 package ru.metlin.empty_project.organization.model;
 
+import ru.metlin.empty_project.office.model.Office;
 import ru.metlin.empty_project.organization.request.SaveOrganizationRequest;
 import ru.metlin.empty_project.organization.request.UpdateOrganizationRequest;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "Organization")
@@ -39,6 +45,9 @@ public class Organization {
 
     @Column(name = "phone", length = 20, nullable = false)
     private String phone;
+
+    @OneToMany(mappedBy = "Organization", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private Set<Office> officeList = new HashSet<Office>();
 
     public Organization(Long id, String name, Boolean isActive, String fullName, Long inn, Long kpp, String address, String phone) {
         this.id = id;
@@ -136,5 +145,13 @@ public class Organization {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public Set<Office> getOfficeList() {
+        return officeList;
+    }
+
+    public void setOfficeList(Set<Office> officeList) {
+        this.officeList = officeList;
     }
 }
