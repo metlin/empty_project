@@ -2,12 +2,15 @@ package ru.metlin.empty_project.office.model;
 
 import ru.metlin.empty_project.office.request.SaveOfficeRequest;
 import ru.metlin.empty_project.office.request.UpdateOfficeRequest;
+import ru.metlin.empty_project.organization.model.Organization;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
@@ -32,8 +35,9 @@ public class Office {
     @Column(name = "phone", length = 50, nullable = false)
     private String phone;
 
-    @Column(name = "org_id", nullable = false)
-    private Long orgId;
+ //   @ManyToOne
+ //   @JoinColumn(name = "org_id", nullable = false)
+    private Organization organization;
 
     public Office() {
     }
