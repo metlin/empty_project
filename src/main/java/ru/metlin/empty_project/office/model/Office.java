@@ -105,4 +105,11 @@ public class Office {
         this.phone = phone;
     }
 
+    public Organization getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(Organization organization) {
+        this.organization = organization;
+    }
 }

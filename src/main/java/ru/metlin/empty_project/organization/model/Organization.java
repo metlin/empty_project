@@ -46,7 +46,7 @@ public class Organization {
     @Column(name = "phone", length = 20, nullable = false)
     private String phone;
 
-    @OneToMany(mappedBy = "Organization", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private Set<Office> officeList = new HashSet<Office>();
 
     public Organization(Long id, String name, Boolean isActive, String fullName, Long inn, Long kpp, String address, String phone) {
@@ -83,6 +83,17 @@ public class Organization {
         this.phone = request.getPhone();
     }
 
+   /* public void addOffice(Office office) {
+
+        if (officeList == null) {
+            officeList = new HashSet<>();
+        }
+
+        getOfficeList().add(office);
+
+        office.setOrganization(this);
+    }
+*/
     public Long getId() {
         return id;
     }
