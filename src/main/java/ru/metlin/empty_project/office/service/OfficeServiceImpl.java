@@ -8,6 +8,9 @@ import ru.metlin.empty_project.office.dao.OfficeDao;
 import ru.metlin.empty_project.office.model.Office;
 import ru.metlin.empty_project.office.request.SaveOfficeRequest;
 import ru.metlin.empty_project.office.request.UpdateOfficeRequest;
+import ru.metlin.empty_project.organization.dao.OrganizationDao;
+import ru.metlin.empty_project.organization.dao.OrganizationDaoImpl;
+import ru.metlin.empty_project.organization.model.Organization;
 
 import javax.transaction.Transactional;
 
@@ -15,10 +18,12 @@ import javax.transaction.Transactional;
 public class OfficeServiceImpl implements OfficeService {
 
     private final OfficeDao officeDao;
+    private final OrganizationDao orgDao;
 
     @Autowired
-    public OfficeServiceImpl(OfficeDao officeDao) {
+    public OfficeServiceImpl(OfficeDao officeDao, OrganizationDao orgDao) {
         this.officeDao = officeDao;
+        this.orgDao = orgDao;
     }
 
     @Override
@@ -29,8 +34,35 @@ public class OfficeServiceImpl implements OfficeService {
             throw new Exception("this office does not exist");
         }
 
+        String officeName = request.getName();
+
+        for (int i = 0; i < officeName.length(); i++) {
+            if (officeName.charAt(i) == ' ') {
+                throw new Exception("the name must not contain spaces");
+            }
+        }
+
+        if (officeName.length() < 2 ) {
+            throw new Exception("this office does not exist");
+        }
+
+        String officePhone = request.getPhone();
+
+        for (int i = 0; i < officePhone.length(); i++) {
+            if (officePhone.charAt(i) < '0' || officePhone.charAt(i) > '9' ) {
+                throw new Exception("phone number cannot contain letters");
+            }
+        }
+
+        Organization organization = orgDao.getById(request.getOrgId());
+
+        if (organization == null) {
+            throw new Exception("Office should have an organization");
+        }
+
         Office office = new Office(request);
 
+        office.setOrganization(organization);
 
         return officeDao.add(office);
     }

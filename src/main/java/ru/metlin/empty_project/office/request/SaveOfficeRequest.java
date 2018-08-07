@@ -18,6 +18,14 @@ public class SaveOfficeRequest {
         this.orgId = orgId;
     }
 
+    public Long getOrgId() {
+        return orgId;
+    }
+
+    public void setOrgId(Long orgId) {
+        this.orgId = orgId;
+    }
+
     public String getName() {
         return name;
     }
@@ -50,11 +58,4 @@ public class SaveOfficeRequest {
         this.phone = phone;
     }
 
-    public Long getOrgId() {
-        return orgId;
-    }
-
-    public void setOrgId(Long orgId) {
-        this.orgId = orgId;
-    }
 }

@@ -43,7 +43,7 @@ public class OrganizationDaoImpl implements OrganizationDao {
             org.setId(organization.getId());
             org.setPhone(organization.getPhone());
 
-            entityManager.persist(org);
+        //    entityManager.persist(org);
         }
 
         return successView;

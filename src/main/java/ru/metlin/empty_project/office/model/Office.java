@@ -65,6 +65,11 @@ public class Office {
         this.phone = request.getPhone();
     }
 
+    @Override
+    public String toString() {
+        return  id + " "  + name  + " "  + isActive + "  "  + address + "  " + phone + " " + organization.getId();
+    }
+
     public Long getId() {
         return id;
     }

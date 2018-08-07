@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,6 +23,7 @@ public class Organization {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
+  //  @NotNull
     @Column(name = "org_id")
     private Long id;
 
@@ -81,6 +83,11 @@ public class Organization {
         this.kpp = request.getKpp();
         this.address = request.getAddress();
         this.phone = request.getPhone();
+    }
+
+    @Override
+    public String toString() {
+        return  id + " "  + name  + " "  + isActive + "  "  + address + "  " + phone;
     }
 
    /* public void addOffice(Office office) {
