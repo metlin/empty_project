@@ -3,16 +3,22 @@ package ru.metlin.empty_project.office.model;
 import ru.metlin.empty_project.office.request.SaveOfficeRequest;
 import ru.metlin.empty_project.office.request.UpdateOfficeRequest;
 import ru.metlin.empty_project.organization.model.Organization;
+import ru.metlin.empty_project.user.model.User;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Office")
@@ -38,6 +44,9 @@ public class Office {
     @ManyToOne
     @JoinColumn(name = "org_id", nullable = false)
     private Organization organization;
+
+    @OneToMany(mappedBy = "office", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<User> userList;
 
     public Office() {
     }
@@ -68,6 +77,17 @@ public class Office {
     @Override
     public String toString() {
         return  id + " "  + name  + " "  + isActive + "  "  + address + "  " + phone + " " + organization.getId();
+    }
+
+    public void addUser(User user) {
+
+        if (userList == null) {
+            userList = new ArrayList<>();
+        }
+
+        getUserList().add(user);
+
+        //    user.setOffice(this);
     }
 
     public Long getId() {
@@ -116,5 +136,13 @@ public class Office {
 
     public void setOrganization(Organization organization) {
         this.organization = organization;
+    }
+
+    public List<User> getUserList() {
+        return userList;
+    }
+
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
     }
 }

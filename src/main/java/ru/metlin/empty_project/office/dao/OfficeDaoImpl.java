@@ -33,25 +33,25 @@ public class OfficeDaoImpl implements OfficeDao {
 
     @Override
     public SuccessView add(Office office) {
-        System.out.println("--------------------------Пришел в дао----------------------");
+        //    System.out.println("--------------------------Пришел в дао----------------------");
 
         SuccessView successView = new SuccessView();
 
         if (office.getId() == null) {
-           entityManager.persist(office);
+            entityManager.persist(office);
         } else {
-           Office off = entityManager.find(Office.class, office.getId());
-           off.setName(office.getName());
-           off.setActive(office.getActive());
-           off.setAddress(office.getAddress());
-           off.setId(office.getId());
-           off.setPhone(office.getPhone());
+            Office off = entityManager.find(Office.class, office.getId());
+            off.setName(office.getName());
+            off.setActive(office.getActive());
+            off.setAddress(office.getAddress());
+            off.setId(office.getId());
+            off.setPhone(office.getPhone());
 
-            System.out.println("--------------------------Пошел в ентити----------------------");
+            //       System.out.println("--------------------------Пошел в ентити----------------------");
 
-           entityManager.persist(off);
-       }
-        System.out.println("--------------------------Сейчас вернет вьюху----------------------");
+            //   entityManager.persist(off);
+        }
+        //    System.out.println("--------------------------Сейчас вернет вьюху----------------------");
 
         return successView;
     }

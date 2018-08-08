@@ -4,6 +4,8 @@ import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.metlin.empty_project.SuccessView;
+import ru.metlin.empty_project.office.dao.OfficeDao;
+import ru.metlin.empty_project.office.model.Office;
 import ru.metlin.empty_project.organization.dao.OrganizationDao;
 import ru.metlin.empty_project.organization.model.Organization;
 import ru.metlin.empty_project.organization.request.OrganizationListRequest;
@@ -12,15 +14,18 @@ import ru.metlin.empty_project.organization.request.UpdateOrganizationRequest;
 import ru.metlin.empty_project.organization.response.OrganizationResponse;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class OrganizationServiceImpl implements OrganizationService {
 
     private OrganizationDao organizationDao;
+    private OfficeDao officeDao;
 
     @Autowired
-    public OrganizationServiceImpl(OrganizationDao organizationDao) {
+    public OrganizationServiceImpl(OrganizationDao organizationDao, OfficeDao officeDao) {
         this.organizationDao = organizationDao;
+        this.officeDao = officeDao;
     }
 
     @Override

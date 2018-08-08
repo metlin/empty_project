@@ -7,27 +7,30 @@ public class SaveUserRequest {
     private String middleName;
     private String position;
     private String phone;
-    private String docName;
-    private Long docNumber;
-    private Long docDate;
-    private Long sitizenshipCode;
     private Boolean isIdentified;
+    private Long officeId;
 
     public SaveUserRequest(String firstName, String secondName, String middleName, String position,
-                           String phone, String docName, Long docNumber, Long docDate, Long sitizenshipCode, Boolean isIdentified) {
+                           String phone, Boolean isIdentified, Long officeId) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.middleName = middleName;
         this.position = position;
         this.phone = phone;
-        this.docName = docName;
-        this.docNumber = docNumber;
-        this.docDate = docDate;
-        this.sitizenshipCode = sitizenshipCode;
         this.isIdentified = isIdentified;
+        this.officeId = officeId;
+
     }
 
     public SaveUserRequest() {
+    }
+
+    public Long getOfficeId() {
+        return officeId;
+    }
+
+    public void setOfficeId(Long officeId) {
+        this.officeId = officeId;
     }
 
     public String getFirstName() {
@@ -68,38 +71,6 @@ public class SaveUserRequest {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public String getDocName() {
-        return docName;
-    }
-
-    public void setDocName(String docName) {
-        this.docName = docName;
-    }
-
-    public Long getDocNumber() {
-        return docNumber;
-    }
-
-    public void setDocNumber(Long docNumber) {
-        this.docNumber = docNumber;
-    }
-
-    public Long getDocDate() {
-        return docDate;
-    }
-
-    public void setDocDate(Long docDate) {
-        this.docDate = docDate;
-    }
-
-    public Long getSitizenshipCode() {
-        return sitizenshipCode;
-    }
-
-    public void setSitizenshipCode(Long sitizenshipCode) {
-        this.sitizenshipCode = sitizenshipCode;
     }
 
     public Boolean getIdentified() {

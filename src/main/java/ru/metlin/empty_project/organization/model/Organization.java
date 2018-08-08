@@ -14,8 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Organization")
@@ -23,7 +23,6 @@ public class Organization {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-  //  @NotNull
     @Column(name = "org_id")
     private Long id;
 
@@ -49,7 +48,7 @@ public class Organization {
     private String phone;
 
     @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private Set<Office> officeList = new HashSet<Office>();
+    private List<Office> officeList;
 
     public Organization(Long id, String name, Boolean isActive, String fullName, Long inn, Long kpp, String address, String phone) {
         this.id = id;
@@ -90,17 +89,17 @@ public class Organization {
         return  id + " "  + name  + " "  + isActive + "  "  + address + "  " + phone;
     }
 
-   /* public void addOffice(Office office) {
+    public void addOffice(Office office) {
 
         if (officeList == null) {
-            officeList = new HashSet<>();
+            officeList = new ArrayList<>();
         }
 
         getOfficeList().add(office);
 
-        office.setOrganization(this);
+    //    office.setOrganization(this);
     }
-*/
+
     public Long getId() {
         return id;
     }
@@ -165,11 +164,11 @@ public class Organization {
         this.phone = phone;
     }
 
-    public Set<Office> getOfficeList() {
+    public List<Office> getOfficeList() {
         return officeList;
     }
 
-    public void setOfficeList(Set<Office> officeList) {
+    public void setOfficeList(List<Office> officeList) {
         this.officeList = officeList;
     }
 }

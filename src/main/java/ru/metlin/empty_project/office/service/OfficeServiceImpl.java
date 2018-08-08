@@ -64,6 +64,10 @@ public class OfficeServiceImpl implements OfficeService {
 
         office.setOrganization(organization);
 
+        organization.addOffice(office);
+
+        System.out.println(organization.getOfficeList());
+
         return officeDao.add(office);
     }
 
