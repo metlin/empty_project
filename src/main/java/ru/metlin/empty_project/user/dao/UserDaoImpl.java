@@ -21,7 +21,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public Iterable<User> all() {
-        TypedQuery<User> query = entityManager.createQuery("SELECT o FROM Office o", User.class);
+        TypedQuery<User> query = entityManager.createQuery("SELECT u FROM User u", User.class);
         return query.getResultList();
     }
 

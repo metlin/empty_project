@@ -8,8 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Document")
 public class Document {
 
     @Id
@@ -17,13 +19,13 @@ public class Document {
     @Column(name = "doc_id")
     private Long docId;
 
-    @Column(name = "name", length = 50, nullable = false)
+    @Column(name = "doc_name", length = 50, nullable = false)
     private String name;
 
-    @Column(name = "code", length = 10, nullable = false)
+    @Column(name = "doc_code", length = 10, nullable = false)
     private String code;
 
-    @OneToOne
+    @OneToOne(mappedBy = "document")
     private User user;
 
     public Document(Long docId, String name, String code) {
@@ -33,14 +35,6 @@ public class Document {
     }
 
     public Document() {
-    }
-
-    public Long getUser_id() {
-        return docId;
-    }
-
-    public void setUser_id(Long user_id) {
-        this.docId = user_id;
     }
 
     public String getName() {
@@ -57,5 +51,21 @@ public class Document {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public Long getDocId() {
+        return docId;
+    }
+
+    public void setDocId(Long docId) {
+        this.docId = docId;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

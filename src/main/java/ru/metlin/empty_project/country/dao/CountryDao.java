@@ -5,4 +5,6 @@ import ru.metlin.empty_project.country.model.Country;
 public interface CountryDao {
 
     Iterable<Country> all();
+
+    Country getById(Long id);
 }

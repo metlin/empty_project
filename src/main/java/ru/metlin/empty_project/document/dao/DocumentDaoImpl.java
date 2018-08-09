@@ -22,4 +22,9 @@ public class DocumentDaoImpl implements DocumentDao {
         TypedQuery<Document> query = entityManager.createQuery("SELECT d FROM Document d", Document.class);
         return query.getResultList();
     }
+
+    @Override
+    public Document getById(Long id) {
+        return entityManager.find(Document.class, id);
+    }
 }

@@ -1,9 +1,12 @@
 package ru.metlin.empty_project.user.model;
 
+import ru.metlin.empty_project.country.model.Country;
+import ru.metlin.empty_project.document.model.Document;
 import ru.metlin.empty_project.office.model.Office;
 import ru.metlin.empty_project.user.request.SaveUserRequest;
 import ru.metlin.empty_project.user.request.UpdateUserRequest;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -37,14 +41,20 @@ public class User {
     @Column(name = "phone", length = 50, nullable = false)
     private String phone;
 
-    @Column(name = "identifired", length = 50, nullable = false)
+    @Column(name = "identified", length = 50, nullable = false)
     private Boolean isIdentified;
 
     @ManyToOne
     @JoinColumn(name = "office_id", nullable = false)
     private Office office;
 
-    //private Document document;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "doc_id")
+    private Document document;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "country_id")
+    private Country country;
 
     public User(Long id, String firstName, String secondName, String middleName, String position,
                 String phone, Boolean isIdentified) {
@@ -141,5 +151,21 @@ public class User {
 
     public void setOffice(Office office) {
         this.office = office;
+    }
+
+    public Document getDocument() {
+        return document;
+    }
+
+    public void setDocument(Document document) {
+        this.document = document;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 }

@@ -23,4 +23,8 @@ public class CountryDaoImpl implements CountryDao {
         return query.getResultList();
     }
 
+    @Override
+    public Country getById(Long id) {
+        return entityManager.find(Country.class, id);
+    }
 }

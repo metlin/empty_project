@@ -9,9 +9,11 @@ public class SaveUserRequest {
     private String phone;
     private Boolean isIdentified;
     private Long officeId;
+    private Long docId;
+    private Long countryId;
 
-    public SaveUserRequest(String firstName, String secondName, String middleName, String position,
-                           String phone, Boolean isIdentified, Long officeId) {
+    public SaveUserRequest(String firstName, String secondName, String middleName, String position, String phone,
+                           Boolean isIdentified, Long officeId, Long docId, Long countryId) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.middleName = middleName;
@@ -19,7 +21,8 @@ public class SaveUserRequest {
         this.phone = phone;
         this.isIdentified = isIdentified;
         this.officeId = officeId;
-
+        this.docId = docId;
+        this.countryId = countryId;
     }
 
     public SaveUserRequest() {
@@ -79,5 +82,21 @@ public class SaveUserRequest {
 
     public void setIdentified(Boolean identified) {
         isIdentified = identified;
+    }
+
+    public Long getDocId() {
+        return docId;
+    }
+
+    public void setDocId(Long docId) {
+        this.docId = docId;
+    }
+
+    public Long getCountryId() {
+        return countryId;
+    }
+
+    public void setCountryId(Long countryId) {
+        this.countryId = countryId;
     }
 }

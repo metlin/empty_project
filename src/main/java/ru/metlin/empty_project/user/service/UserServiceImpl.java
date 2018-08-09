@@ -3,6 +3,10 @@ package ru.metlin.empty_project.user.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.metlin.empty_project.SuccessView;
+import ru.metlin.empty_project.country.dao.CountryDao;
+import ru.metlin.empty_project.country.model.Country;
+import ru.metlin.empty_project.document.dao.DocumentDao;
+import ru.metlin.empty_project.document.model.Document;
 import ru.metlin.empty_project.office.dao.OfficeDao;
 import ru.metlin.empty_project.office.model.Office;
 import ru.metlin.empty_project.user.dao.UserDao;
@@ -17,18 +21,22 @@ public class UserServiceImpl implements UserService {
 
     private final UserDao userDao;
     private final OfficeDao officeDao;
+    private final DocumentDao documentDao;
+    private final CountryDao countryDao;
 
     @Autowired
-    public UserServiceImpl(UserDao userDao, OfficeDao officeDao) {
+    public UserServiceImpl(UserDao userDao, OfficeDao officeDao, DocumentDao documentDao, CountryDao countryDao) {
         this.userDao = userDao;
         this.officeDao = officeDao;
+        this.documentDao = documentDao;
+        this.countryDao = countryDao;
     }
 
     @Override
     @Transactional
     public SuccessView save(SaveUserRequest request) throws Exception {
 
-        if (request.getPhone() == null) {
+        if (request.getOfficeId() == 0) {
             throw new Exception("this user does not exist");
         }
 
@@ -38,14 +46,35 @@ public class UserServiceImpl implements UserService {
             throw new Exception("User should have an office");
         }
 
+        if (request.getDocId() == 0) {
+            throw new Exception("the user must have a document");
+        }
+
+        Document document = documentDao.getById(request.getDocId());
+
+        if (document == null) {
+            throw new Exception("User should have a document");
+        }
+
+        if (request.getCountryId() == 0) {
+            throw new Exception("the user must belong to the country");
+        }
+
+        Country country = countryDao.getById(request.getCountryId());
+
+        if (country == null) {
+            throw new Exception("User should have a country");
+        }
+
         User user = new User(request);
 
         user.setOffice(office);
-
         office.addUser(user);
 
-        System.out.println(office.getUserList());
+        user.setDocument(document);
 
+        user.setCountry(country);
+        
         return userDao.add(user);
     }
 
