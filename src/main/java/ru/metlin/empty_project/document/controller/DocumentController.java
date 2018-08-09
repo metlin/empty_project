@@ -1,25 +1,26 @@
-package ru.metlin.empty_project.handbooks;
+package ru.metlin.empty_project.document.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.metlin.empty_project.document.model.Document;
+import ru.metlin.empty_project.document.service.DocumentService;
 
 @RestController
 @RequestMapping(value = "/api")
-public class HandbookController {
+public class DocumentController {
 
-    private final HandbookService handbookService;
+    private final DocumentService documentService;
 
     @Autowired
-    HandbookController(HandbookService handbookService) {
-        this.handbookService = handbookService;
+    DocumentController(DocumentService documentService) {
+        this.documentService = documentService;
     }
 
     @PostMapping(value = "/docs")
     private Iterable<Document> getDocumentsList() {
-        return handbookService.findAll();
+        return documentService.findAll();
     }
 
 }

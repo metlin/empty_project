@@ -1,6 +1,5 @@
 package ru.metlin.empty_project.user.model;
 
-import ru.metlin.empty_project.handbooks.Document;
 import ru.metlin.empty_project.office.model.Office;
 import ru.metlin.empty_project.user.request.SaveUserRequest;
 import ru.metlin.empty_project.user.request.UpdateUserRequest;
