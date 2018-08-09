@@ -33,7 +33,6 @@ public class OfficeDaoImpl implements OfficeDao {
 
     @Override
     public SuccessView add(Office office) {
-        //    System.out.println("--------------------------Пришел в дао----------------------");
 
         SuccessView successView = new SuccessView();
 
@@ -46,12 +45,7 @@ public class OfficeDaoImpl implements OfficeDao {
             off.setAddress(office.getAddress());
             off.setId(office.getId());
             off.setPhone(office.getPhone());
-
-            //       System.out.println("--------------------------Пошел в ентити----------------------");
-
-            //   entityManager.persist(off);
         }
-        //    System.out.println("--------------------------Сейчас вернет вьюху----------------------");
 
         return successView;
     }

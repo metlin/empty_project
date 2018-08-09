@@ -7,21 +7,21 @@ public class UserListRequest {
     private String secondName;
     private String middleName;
     private String position;
-    private Long docDate;
-    private Long sitizenshipCode;
+    private Long docId;
+    private Long countryId;
+
+    public UserListRequest() {
+    }
 
     public UserListRequest(Long officeId, String firstName, String secondName, String middleName,
-                           String position, Long docDate, Long sitizenshipCode) {
+                           String position, Long docId, Long countryId) {
         this.officeId = officeId;
         this.firstName = firstName;
         this.secondName = secondName;
         this.middleName = middleName;
         this.position = position;
-        this.docDate = docDate;
-        this.sitizenshipCode = sitizenshipCode;
-    }
-
-    public UserListRequest() {
+        this.docId = docId;
+        this.countryId = countryId;
     }
 
     public Long getOfficeId() {
@@ -64,20 +64,20 @@ public class UserListRequest {
         this.position = position;
     }
 
-    public Long getDocDate() {
-        return docDate;
+    public Long getDocId() {
+        return docId;
     }
 
-    public void setDocDate(Long docDate) {
-        this.docDate = docDate;
+    public void setDocId(Long docId) {
+        this.docId = docId;
     }
 
-    public Long getSitizenshipCode() {
-        return sitizenshipCode;
+    public Long getCountryId() {
+        return countryId;
     }
 
-    public void setSitizenshipCode(Long sitizenshipCode) {
-        this.sitizenshipCode = sitizenshipCode;
+    public void setCountryId(Long countryId) {
+        this.countryId = countryId;
     }
 }
 

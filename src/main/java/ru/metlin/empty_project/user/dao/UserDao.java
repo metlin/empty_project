@@ -7,6 +7,8 @@ public interface UserDao {
 
     SuccessView add(User user);
 
+    SuccessView update(User user);
+
     Iterable<User> all();
 
     User getById(Long id);

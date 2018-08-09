@@ -74,7 +74,7 @@ public class UserServiceImpl implements UserService {
         user.setDocument(document);
 
         user.setCountry(country);
-        
+
         return userDao.add(user);
     }
 
@@ -88,7 +88,7 @@ public class UserServiceImpl implements UserService {
 
         User user = new User(request);
 
-        return userDao.add(user);
+        return userDao.update(user);
     }
 
     @Override

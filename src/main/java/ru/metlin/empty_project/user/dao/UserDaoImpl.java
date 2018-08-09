@@ -35,17 +35,23 @@ public class UserDaoImpl implements UserDao {
 
         SuccessView successView = new SuccessView();
 
-        if (user.getId() == null) {
-            entityManager.persist(user);
-        } else {
-            User us = entityManager.find(User.class, user.getId());
-            us.setFirstName(user.getFirstName());
-            us.setSecondName(user.getSecondName());
-            us.setMiddleName(user.getMiddleName());
-            us.setPhone(user.getPhone());
-            us.setPosition(user.getPhone());
-            us.setIdentified(user.getIdentified());
-        }
+        entityManager.persist(user);
+
+        return successView;
+    }
+
+    @Override
+    public SuccessView update(User user) {
+        SuccessView successView = new SuccessView();
+
+        User updateUser = entityManager.find(User.class, user.getId());
+
+        updateUser.setFirstName(user.getFirstName());
+        updateUser.setSecondName(user.getSecondName());
+        updateUser.setMiddleName(user.getMiddleName());
+        updateUser.setPhone(user.getPhone());
+        updateUser.setPosition(user.getPosition());
+        updateUser.setIdentified(user.getIdentified());
 
         return successView;
     }
