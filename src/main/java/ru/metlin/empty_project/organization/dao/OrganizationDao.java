@@ -5,9 +5,9 @@ import ru.metlin.empty_project.organization.model.Organization;
 
 public interface OrganizationDao {
 
-    SuccessView add(Organization organization);
+    void add(Organization organization);
 
-    SuccessView update(Organization organization);
+    void update(Organization organization);
 
     Iterable<Organization> all();
 

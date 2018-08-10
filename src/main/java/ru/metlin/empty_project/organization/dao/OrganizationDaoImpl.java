@@ -30,18 +30,13 @@ public class OrganizationDaoImpl implements OrganizationDao {
     }
 
     @Override
-    public SuccessView add(Organization organization) {
-
-        SuccessView successView = new SuccessView();
+    public void add(Organization organization) {
 
         entityManager.persist(organization);
-
-        return successView;
     }
 
     @Override
-    public SuccessView update(Organization organization) {
-        SuccessView successView = new SuccessView();
+    public void update(Organization organization) {
 
         Organization updateOrg = entityManager.find(Organization.class, organization.getId());
 
@@ -53,7 +48,5 @@ public class OrganizationDaoImpl implements OrganizationDao {
         updateOrg.setPhone(organization.getPhone());
         updateOrg.setInn(organization.getInn());
         updateOrg.setKpp(organization.getKpp());
-
-        return successView;
     }
 }

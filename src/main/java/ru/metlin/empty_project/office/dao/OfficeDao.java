@@ -7,9 +7,9 @@ import java.util.Optional;
 
 public interface OfficeDao {
 
-    SuccessView add(Office office);
+    void add(Office office);
 
-    SuccessView update(Office office);
+    void update(Office office);
 
     Iterable<Office> all();
 

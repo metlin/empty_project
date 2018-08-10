@@ -64,7 +64,9 @@ public class OfficeServiceImpl implements OfficeService {
         office.setOrganization(organization);
         organization.addOffice(office);
 
-        return officeDao.add(office);
+        officeDao.add(office);
+
+        return new SuccessView();
     }
 
     @Override
@@ -108,7 +110,9 @@ public class OfficeServiceImpl implements OfficeService {
         Office office = new Office(request);
         office.setOrganization(organization);
 
-        return officeDao.update(office);
+        officeDao.update(office);
+
+        return new SuccessView();
     }
 
     @Override

@@ -48,13 +48,15 @@ public class OrganizationServiceImpl implements OrganizationService {
             throw new Exception("inn must contain 10 digits");
         }
 
-        if (request.getKpp() < 100000000L || request.getInn() > 999999999L) {
+        if (request.getKpp() < 100000000L || request.getKpp() > 999999999L) {
             throw new Exception("kpp must contain 9 digits");
         }
 
         Organization organization = new Organization(request);
 
-        return organizationDao.add(organization);
+        organizationDao.add(organization);
+
+        return new SuccessView();
     }
 
     @Override
@@ -81,13 +83,15 @@ public class OrganizationServiceImpl implements OrganizationService {
             throw new Exception("inn must contain 10 digits");
         }
 
-        if (request.getKpp() < 100000000L || request.getInn() > 999999999L) {
+        if (request.getKpp() < 100000000L || request.getKpp() > 999999999L) {
             throw new Exception("kpp must contain 9 digits");
         }
 
         Organization organization = new Organization(request);
 
-        return organizationDao.update(organization);
+        organizationDao.update(organization);
+        
+        return new SuccessView();
     }
 
     @Override

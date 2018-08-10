@@ -5,9 +5,9 @@ import ru.metlin.empty_project.user.model.User;
 
 public interface UserDao {
 
-    SuccessView add(User user);
+    void add(User user);
 
-    SuccessView update(User user);
+    void update(User user);
 
     Iterable<User> all();
 

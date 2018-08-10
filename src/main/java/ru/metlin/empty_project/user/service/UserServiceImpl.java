@@ -94,7 +94,9 @@ public class UserServiceImpl implements UserService {
         user.setDocument(document);
         user.setCountry(country);
 
-        return userDao.add(user);
+        userDao.add(user);
+
+        return new SuccessView();
     }
 
     @Override
@@ -158,7 +160,9 @@ public class UserServiceImpl implements UserService {
         user.setDocument(document);
         user.setCountry(country);
 
-        return userDao.update(user);
+        userDao.update(user);
+
+        return new SuccessView();
     }
 
     @Override

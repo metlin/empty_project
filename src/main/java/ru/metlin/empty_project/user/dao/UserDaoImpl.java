@@ -31,18 +31,13 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public SuccessView add(User user) {
-
-        SuccessView successView = new SuccessView();
+    public void add(User user) {
 
         entityManager.persist(user);
-
-        return successView;
     }
 
     @Override
-    public SuccessView update(User user) {
-        SuccessView successView = new SuccessView();
+    public void update(User user) {
 
         User updateUser = entityManager.find(User.class, user.getId());
 
@@ -56,7 +51,5 @@ public class UserDaoImpl implements UserDao {
         updateUser.setCountry(user.getCountry());
         updateUser.setOffice(user.getOffice());
         updateUser.setDocument(user.getDocument());
-
-        return successView;
     }
 }

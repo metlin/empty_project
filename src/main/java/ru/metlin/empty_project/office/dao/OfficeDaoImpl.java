@@ -32,18 +32,13 @@ public class OfficeDaoImpl implements OfficeDao {
     }
 
     @Override
-    public SuccessView add(Office office) {
-
-        SuccessView successView = new SuccessView();
+    public void add(Office office) {
 
         entityManager.persist(office);
-
-        return successView;
     }
 
     @Override
-    public SuccessView update(Office office) {
-        SuccessView successView = new SuccessView();
+    public void update(Office office) {
 
         Office updateOffice = entityManager.find(Office.class, office.getId());
 
@@ -53,7 +48,5 @@ public class OfficeDaoImpl implements OfficeDao {
         updateOffice.setPhone(office.getPhone());
         updateOffice.setActive(office.getActive());
         updateOffice.setOrganization(office.getOrganization());
-
-        return successView;
     }
 }
