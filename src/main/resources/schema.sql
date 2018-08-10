@@ -26,6 +26,8 @@ CREATE TABLE IF NOT EXISTS User (
     phone           VARCHAR(20)  NULL,
     position        VARCHAR(100)  NOT NULL,
     identified      TINYINT(1)  NOT NULL,
+    doc_number      VARCHAR(20) NOT NULL,
+    doc_date        DATE NOT NULL DEFAULT '2018-01-01',
     office_id       BIGINT NOT NULL,
     doc_id          BIGINT NOT NULL,
     country_id      BIGINT NOT NULL

@@ -36,16 +36,23 @@ public class OfficeDaoImpl implements OfficeDao {
 
         SuccessView successView = new SuccessView();
 
-        if (office.getId() == null) {
-            entityManager.persist(office);
-        } else {
-            Office off = entityManager.find(Office.class, office.getId());
-            off.setName(office.getName());
-            off.setActive(office.getActive());
-            off.setAddress(office.getAddress());
-            off.setId(office.getId());
-            off.setPhone(office.getPhone());
-        }
+        entityManager.persist(office);
+
+        return successView;
+    }
+
+    @Override
+    public SuccessView update(Office office) {
+        SuccessView successView = new SuccessView();
+
+        Office updateOffice = entityManager.find(Office.class, office.getId());
+
+        updateOffice.setId(office.getId());
+        updateOffice.setName(office.getName());
+        updateOffice.setAddress(office.getAddress());
+        updateOffice.setPhone(office.getPhone());
+        updateOffice.setActive(office.getActive());
+        updateOffice.setOrganization(office.getOrganization());
 
         return successView;
     }

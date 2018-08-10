@@ -31,20 +31,28 @@ public class OrganizationDaoImpl implements OrganizationDao {
 
     @Override
     public SuccessView add(Organization organization) {
+
         SuccessView successView = new SuccessView();
 
-        if (organization.getId() == null) {
-            entityManager.persist(organization);
-        } else {
-            Organization org = entityManager.find(Organization.class, organization.getId());
-            org.setName(organization.getName());
-            org.setActive(organization.getActive());
-            org.setAddress(organization.getAddress());
-            org.setId(organization.getId());
-            org.setPhone(organization.getPhone());
+        entityManager.persist(organization);
 
-        //    entityManager.persist(org);
-        }
+        return successView;
+    }
+
+    @Override
+    public SuccessView update(Organization organization) {
+        SuccessView successView = new SuccessView();
+
+        Organization updateOrg = entityManager.find(Organization.class, organization.getId());
+
+        updateOrg.setId(organization.getId());
+        updateOrg.setName(organization.getName());
+        updateOrg.setAddress(organization.getAddress());
+        updateOrg.setFullName(organization.getFullName());
+        updateOrg.setActive(organization.getActive());
+        updateOrg.setPhone(organization.getPhone());
+        updateOrg.setInn(organization.getInn());
+        updateOrg.setKpp(organization.getKpp());
 
         return successView;
     }

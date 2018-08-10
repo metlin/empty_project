@@ -43,7 +43,7 @@ public class OfficeServiceImpl implements OfficeService {
         }
 
         if (officeName.length() < 2 ) {
-            throw new Exception("this office does not exist");
+            throw new Exception("short office name");
         }
 
         String officePhone = request.getPhone();
@@ -61,12 +61,8 @@ public class OfficeServiceImpl implements OfficeService {
         }
 
         Office office = new Office(request);
-
         office.setOrganization(organization);
-
         organization.addOffice(office);
-
-        System.out.println(organization.getOfficeList());
 
         return officeDao.add(office);
     }
@@ -75,30 +71,52 @@ public class OfficeServiceImpl implements OfficeService {
     @Transactional
     public SuccessView update(UpdateOfficeRequest request) throws Exception {
 
-        if (request.getOrgId() == 0) {
-            throw new Exception("this office does not exist");
-        }
-
         if (request.getId() == 0) {
             throw new Exception("this office does not exist");
         }
 
-        if (request.getName() == null) {
+        if (request.getOrgId() == 0) {
             throw new Exception("this office does not exist");
         }
 
-        if (request.getAddress() == null) {
-            throw new Exception("this office does not exist");
+        String officeName = request.getName();
+
+        for (int i = 0; i < officeName.length(); i++) {
+            if (officeName.charAt(i) == ' ') {
+                throw new Exception("the name must not contain spaces");
+            }
+        }
+
+        if (officeName.length() < 2 ) {
+            throw new Exception("short office name");
+        }
+
+        String officePhone = request.getPhone();
+
+        for (int i = 0; i < officePhone.length(); i++) {
+            if (officePhone.charAt(i) < '0' || officePhone.charAt(i) > '9' ) {
+                throw new Exception("phone number cannot contain letters");
+            }
+        }
+
+        Organization organization = orgDao.getById(request.getOrgId());
+
+        if (organization == null) {
+            throw new Exception("Office should have an organization");
         }
 
         Office office = new Office(request);
+        office.setOrganization(organization);
 
-        return officeDao.add(office);
+        return officeDao.update(office);
     }
 
     @Override
     @Transactional
     public Iterable<Office> findAll() {
+
+       // тут фильтр
+
         return officeDao.all();
     }
 
@@ -106,7 +124,13 @@ public class OfficeServiceImpl implements OfficeService {
     @Transactional
     public Office findById(Long id) throws Exception {
 
-        if (id == 0) {
+        if (id < 1) {
+            throw new Exception("id greater than 0");
+        }
+
+        Office office = officeDao.getById(id);
+
+        if (office == null) {
             throw new Exception("this office does not exist");
         }
 

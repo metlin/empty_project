@@ -9,6 +9,8 @@ public interface OfficeDao {
 
     SuccessView add(Office office);
 
+    SuccessView update(Office office);
+
     Iterable<Office> all();
 
     Office getById(Long id);

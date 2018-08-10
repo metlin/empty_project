@@ -1,5 +1,7 @@
 package ru.metlin.empty_project.user.request;
 
+import java.util.Date;
+
 public class SaveUserRequest {
 
     private String firstName;
@@ -8,18 +10,23 @@ public class SaveUserRequest {
     private String position;
     private String phone;
     private Boolean isIdentified;
+    private Date docDate;
+    private Long docNumber;
     private Long officeId;
     private Long docId;
     private Long countryId;
 
-    public SaveUserRequest(String firstName, String secondName, String middleName, String position, String phone,
-                           Boolean isIdentified, Long officeId, Long docId, Long countryId) {
+    public SaveUserRequest(String firstName, String secondName, String middleName, String position,
+                           String phone, Boolean isIdentified, Date docDate, Long docNumber, Long officeId,
+                           Long docId, Long countryId) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.middleName = middleName;
         this.position = position;
         this.phone = phone;
         this.isIdentified = isIdentified;
+        this.docDate = docDate;
+        this.docNumber = docNumber;
         this.officeId = officeId;
         this.docId = docId;
         this.countryId = countryId;
@@ -98,5 +105,21 @@ public class SaveUserRequest {
 
     public void setCountryId(Long countryId) {
         this.countryId = countryId;
+    }
+
+    public Date getDocDate() {
+        return docDate;
+    }
+
+    public void setDocDate(Date docDate) {
+        this.docDate = docDate;
+    }
+
+    public Long getDocNumber() {
+        return docNumber;
+    }
+
+    public void setDocNumber(Long docNumber) {
+        this.docNumber = docNumber;
     }
 }

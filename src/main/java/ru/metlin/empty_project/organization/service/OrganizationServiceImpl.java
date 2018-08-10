@@ -36,6 +36,22 @@ public class OrganizationServiceImpl implements OrganizationService {
             throw new Exception("this organization does not exist");
         }
 
+        String orgName = request.getName();
+
+        for (int i = 0; i < orgName.length(); i++) {
+            if (orgName.charAt(i) < 'A' || orgName.charAt(i) > 'z' ) {
+                throw new Exception("the name cannot contain symbols");
+            }
+        }
+
+        if (request.getInn() < 1000000000L || request.getInn() > 9999999999L) {
+            throw new Exception("inn must contain 10 digits");
+        }
+
+        if (request.getKpp() < 100000000L || request.getInn() > 999999999L) {
+            throw new Exception("kpp must contain 9 digits");
+        }
+
         Organization organization = new Organization(request);
 
         return organizationDao.add(organization);
@@ -53,13 +69,25 @@ public class OrganizationServiceImpl implements OrganizationService {
             throw new Exception("this organization does not exist");
         }
 
-        if (request.getAddress() == null) {
-            throw new Exception("this organization does not exist");
+        String orgName = request.getName();
+
+        for (int i = 0; i < orgName.length(); i++) {
+            if (orgName.charAt(i) < 'A' || orgName.charAt(i) > 'z' ) {
+                throw new Exception("the name cannot contain symbols");
+            }
+        }
+
+        if (request.getInn() < 1000000000L || request.getInn() > 9999999999L) {
+            throw new Exception("inn must contain 10 digits");
+        }
+
+        if (request.getKpp() < 100000000L || request.getInn() > 999999999L) {
+            throw new Exception("kpp must contain 9 digits");
         }
 
         Organization organization = new Organization(request);
 
-        return organizationDao.add(organization);
+        return organizationDao.update(organization);
     }
 
     @Override
@@ -72,7 +100,13 @@ public class OrganizationServiceImpl implements OrganizationService {
     @Transactional
     public Organization findById(Long id) throws Exception {
 
-        if (id == 0) {
+        if (id < 1) {
+            throw new Exception("id greater than 0");
+        }
+
+        Organization  organization = organizationDao.getById(id);
+
+        if (organization == null) {
             throw new Exception("this organization does not exist");
         }
 

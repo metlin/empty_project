@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.util.Date;
 
 @Entity
 @Table(name = "User")
@@ -38,6 +39,12 @@ public class User {
     @Column(name = "position", length = 50, nullable = false)
     private String position;
 
+    @Column(name = "doc_number", length = 30, nullable = false)
+    private Long docNumber;
+
+    @Column(name = "doc_date", length = 10, nullable = false)
+    private Date docDate;
+
     @Column(name = "phone", length = 50, nullable = false)
     private String phone;
 
@@ -57,7 +64,7 @@ public class User {
     private Country country;
 
     public User(Long id, String firstName, String secondName, String middleName, String position,
-                String phone, Boolean isIdentified) {
+                String phone, Boolean isIdentified, Date docDate, Long docNumber) {
         this.id = id;
         this.firstName = firstName;
         this.secondName = secondName;
@@ -65,6 +72,8 @@ public class User {
         this.position = position;
         this.phone = phone;
         this.isIdentified = isIdentified;
+        this.docDate = docDate;
+        this.docNumber = docNumber;
     }
 
     public User() {
@@ -77,6 +86,8 @@ public class User {
         this.position = request.getPosition();
         this.phone = request.getPhone();
         this.isIdentified = request.getIdentified();
+        this.docDate = request.getDocDate();
+        this.docNumber = request.getDocNumber();
     }
 
     public User(UpdateUserRequest request) {
@@ -167,5 +178,21 @@ public class User {
 
     public void setCountry(Country country) {
         this.country = country;
+    }
+
+    public Long getDocNumber() {
+        return docNumber;
+    }
+
+    public void setDocNumber(Long docNumber) {
+        this.docNumber = docNumber;
+    }
+
+    public Date getDocDate() {
+        return docDate;
+    }
+
+    public void setDocDate(Date docDate) {
+        this.docDate = docDate;
     }
 }

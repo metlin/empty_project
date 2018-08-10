@@ -7,6 +7,8 @@ public interface OrganizationDao {
 
     SuccessView add(Organization organization);
 
+    SuccessView update(Organization organization);
+
     Iterable<Organization> all();
 
     Organization getById(Long id);

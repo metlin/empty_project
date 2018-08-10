@@ -36,6 +36,28 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public SuccessView save(SaveUserRequest request) throws Exception {
 
+        String firstName = request.getFirstName();
+
+        if (firstName == null) {
+            throw new Exception("User should have a name");
+        }
+
+        for (int i = 0; i < firstName.length(); i++) {
+            if (firstName.charAt(i) == ' ') {
+                throw new Exception("the name must not contain spaces");
+            }
+        }
+
+        for (int i = 0; i < firstName.length(); i++) {
+            if (firstName.charAt(i) > '0' || firstName.charAt(i) < '9' ) {
+                throw new Exception("the name cannot contain numbers");
+            }
+        }
+
+        if (request.getPosition() == null) {
+            throw new Exception("user should have a position");
+        }
+
         if (request.getOfficeId() == 0) {
             throw new Exception("this user does not exist");
         }
@@ -67,12 +89,9 @@ public class UserServiceImpl implements UserService {
         }
 
         User user = new User(request);
-
         user.setOffice(office);
         office.addUser(user);
-
         user.setDocument(document);
-
         user.setCountry(country);
 
         return userDao.add(user);
@@ -83,10 +102,61 @@ public class UserServiceImpl implements UserService {
     public SuccessView update(UpdateUserRequest request) throws Exception {
 
         if (request.getId() == 0) {
+            throw new Exception("the user must have an ID");
+        }
+
+        String firstName = request.getFirstName();
+
+        if (firstName == null) {
+            throw new Exception("User should have a name");
+        }
+
+        for (int i = 0; i < firstName.length(); i++) {
+            if (firstName.charAt(i) == ' ') {
+                throw new Exception("the name must not contain spaces");
+            }
+        }
+
+        for (int i = 0; i < firstName.length(); i++) {
+            if (firstName.charAt(i) > '0' || firstName.charAt(i) < '9' ) {
+                throw new Exception("the name cannot contain numbers");
+            }
+        }
+
+        if (request.getPosition() == null) {
+            throw new Exception("user should have a position");
+        }
+
+        if (request.getOfficeId() == 0) {
             throw new Exception("this user does not exist");
         }
 
+        Office office = officeDao.getById(request.getOfficeId());
+
+        if (request.getDocId() == 0) {
+            throw new Exception("the user must have a document");
+        }
+
+        Document document = documentDao.getById(request.getDocId());
+
+        if (document == null) {
+            throw new Exception("User should have a document");
+        }
+
+        if (request.getCountryId() == 0) {
+            throw new Exception("the user must belong to the country");
+        }
+
+        Country country = countryDao.getById(request.getCountryId());
+
+        if (country == null) {
+            throw new Exception("User should have a country");
+        }
+
         User user = new User(request);
+        user.setOffice(office);
+        user.setDocument(document);
+        user.setCountry(country);
 
         return userDao.update(user);
     }
@@ -94,6 +164,9 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public Iterable<User> findAll() {
+
+       // в этом методе запилить фильтр
+
         return userDao.all();
     }
 
@@ -101,7 +174,13 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public User findById(Long id) throws Exception {
 
-        if (id == 0) {
+        if (id < 1) {
+            throw new Exception("id greater than 0");
+        }
+
+        User user = userDao.getById(id);
+
+        if (user == null) {
             throw new Exception("this user does not exist");
         }
 
