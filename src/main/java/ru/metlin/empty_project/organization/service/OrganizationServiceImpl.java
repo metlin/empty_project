@@ -1,19 +1,18 @@
 package ru.metlin.empty_project.organization.service;
 
-import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.metlin.empty_project.SuccessView;
 import ru.metlin.empty_project.office.dao.OfficeDao;
-import ru.metlin.empty_project.office.model.Office;
 import ru.metlin.empty_project.organization.dao.OrganizationDao;
 import ru.metlin.empty_project.organization.model.Organization;
-import ru.metlin.empty_project.organization.request.OrganizationListRequest;
 import ru.metlin.empty_project.organization.request.SaveOrganizationRequest;
 import ru.metlin.empty_project.organization.request.UpdateOrganizationRequest;
-import ru.metlin.empty_project.organization.response.OrganizationResponse;
+import ru.metlin.empty_project.organization.response.GetOrganization;
+import ru.metlin.empty_project.organization.response.OrganizationList;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -96,13 +95,15 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     @Transactional
-    public Iterable<Organization> findAll() {
-        return organizationDao.all();
+    public OrganizationList findAll() {
+
+        return new OrganizationList(organizationDao.all());
+
     }
 
     @Override
     @Transactional
-    public Organization findById(Long id) throws Exception {
+    public GetOrganization findById(Long id) throws Exception {
 
         if (id < 1) {
             throw new Exception("id greater than 0");
@@ -114,6 +115,6 @@ public class OrganizationServiceImpl implements OrganizationService {
             throw new Exception("this organization does not exist");
         }
 
-        return organizationDao.getById(id);
+        return new GetOrganization(organizationDao.getById(id));
     }
 }

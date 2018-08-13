@@ -1,6 +1,5 @@
 package ru.metlin.empty_project.organization.controller;
 
-import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,9 +13,11 @@ import ru.metlin.empty_project.organization.model.Organization;
 import ru.metlin.empty_project.organization.request.OrganizationListRequest;
 import ru.metlin.empty_project.organization.request.SaveOrganizationRequest;
 import ru.metlin.empty_project.organization.request.UpdateOrganizationRequest;
-import ru.metlin.empty_project.organization.response.OrganizationResponse;
+import ru.metlin.empty_project.organization.response.GetOrganization;
+import ru.metlin.empty_project.organization.response.OrganizationList;
 import ru.metlin.empty_project.organization.service.OrganizationService;
-import ru.metlin.empty_project.organization.service.OrganizationServiceImpl;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/organization")
@@ -30,16 +31,16 @@ public class OrganizationController {
     }
 
     @PostMapping(value = "/list")
-    private Iterable<Organization> getOrganizationList(@RequestBody OrganizationListRequest request) {
-        return organizationService.findAll();
+    private Response<OrganizationList> getOrganizationList(@RequestBody OrganizationListRequest request) {
+        return new Response<OrganizationList>(organizationService.findAll());
     }
 
     @GetMapping(value = "/{id}")
-    private Response<Organization> getOrganization(@PathVariable Long id) {
+    private Response<GetOrganization> getOrganization(@PathVariable Long id) {
         try {
-            return new Response<Organization>(organizationService.findById(id));
+            return new Response<GetOrganization>(organizationService.findById(id));
         } catch (Exception e) {
-            return new Response<Organization>(e.getMessage());
+            return new Response<GetOrganization>(e.getMessage());
         }
     }
 

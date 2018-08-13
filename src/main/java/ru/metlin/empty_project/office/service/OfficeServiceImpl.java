@@ -134,9 +134,13 @@ public class OfficeServiceImpl implements OfficeService {
 
         Office office = officeDao.getById(id);
 
+        System.out.println("---------------что-то достал из базы------------------");
+
         if (office == null) {
             throw new Exception("this office does not exist");
         }
+
+        System.out.println("---------------достал из базы не null------------------");
 
         return officeDao.getById(id);
     }

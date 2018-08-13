@@ -4,6 +4,10 @@ import ru.metlin.empty_project.SuccessView;
 import ru.metlin.empty_project.organization.model.Organization;
 import ru.metlin.empty_project.organization.request.SaveOrganizationRequest;
 import ru.metlin.empty_project.organization.request.UpdateOrganizationRequest;
+import ru.metlin.empty_project.organization.response.GetOrganization;
+import ru.metlin.empty_project.organization.response.OrganizationList;
+
+import java.util.List;
 
 public interface OrganizationService {
 
@@ -11,7 +15,7 @@ public interface OrganizationService {
 
     SuccessView update(UpdateOrganizationRequest request) throws Exception;
 
-    Iterable<Organization> findAll();
+    OrganizationList findAll();
 
-    Organization findById(Long id) throws Exception;
+    GetOrganization findById(Long id) throws Exception;
 }

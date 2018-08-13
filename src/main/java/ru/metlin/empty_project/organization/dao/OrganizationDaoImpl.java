@@ -7,6 +7,7 @@ import ru.metlin.empty_project.organization.model.Organization;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import java.util.List;
 
 @Repository
 public class OrganizationDaoImpl implements OrganizationDao {
@@ -19,8 +20,9 @@ public class OrganizationDaoImpl implements OrganizationDao {
     }
 
     @Override
-    public Iterable<Organization> all() {
+    public List<Organization> all() {
         TypedQuery<Organization> query = entityManager.createQuery("SELECT o FROM Organization o", Organization.class);
+
         return query.getResultList();
     }
 

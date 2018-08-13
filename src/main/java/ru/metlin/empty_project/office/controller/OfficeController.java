@@ -30,7 +30,7 @@ public class OfficeController {
     @PostMapping(value = "/list")
     private Iterable<Office> getOfficeList(@RequestBody OfficeListRequest request) {
         return officeService.findAll();
-}
+    }
 
     @GetMapping(value = "/{id}")
     private Response<Office> getOffice(@PathVariable Long id) {

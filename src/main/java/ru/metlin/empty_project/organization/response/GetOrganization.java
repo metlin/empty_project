@@ -2,7 +2,7 @@ package ru.metlin.empty_project.organization.response;
 
 import ru.metlin.empty_project.organization.model.Organization;
 
-public class OrganizationResponse {
+public class GetOrganization {
 
     private Long id;
     private String name;
@@ -13,19 +13,10 @@ public class OrganizationResponse {
     private String address;
     private String phone;
 
-    public OrganizationResponse(Long id, String name, Boolean isActive, String fullName, Long inn, Long kpp,
-                                String address, String phone) {
-        this.id = id;
-        this.name = name;
-        this.isActive = isActive;
-        this.fullName = fullName;
-        this.inn = inn;
-        this.kpp = kpp;
-        this.address = address;
-        this.phone = phone;
+    public GetOrganization() {
     }
 
-    public OrganizationResponse(Organization organization) {
+    public GetOrganization(Organization organization) {
         this.id = organization.getId();
         this.name = organization.getName();
         this.isActive = organization.getActive();
@@ -34,9 +25,6 @@ public class OrganizationResponse {
         this.kpp = organization.getKpp();
         this.address = organization.getAddress();
         this.phone = organization.getPhone();
-    }
-
-    public OrganizationResponse() {
     }
 
     public Long getId() {
