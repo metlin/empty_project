@@ -6,8 +6,8 @@ public class OfficeListRequest {
     private Boolean isActive;
     private String phone;
 
-    public OfficeListRequest(Long orgid, String name, Boolean isActive, String phone) {
-        this.orgId = orgid;
+    public OfficeListRequest(Long orgId, String name, Boolean isActive, String phone) {
+        this.orgId = orgId;
         this.name = name;
         this.isActive = isActive;
         this.phone = phone;
@@ -16,11 +16,11 @@ public class OfficeListRequest {
     public OfficeListRequest() {
     }
 
-    public Long getOrgid() {
+    public Long getOrgId() {
         return orgId;
     }
 
-    public void setOrgid(Long orgId) {
+    public void setOrgId(Long orgId) {
         this.orgId = orgId;
     }
 

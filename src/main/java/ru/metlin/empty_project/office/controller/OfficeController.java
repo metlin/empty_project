@@ -14,7 +14,10 @@ import ru.metlin.empty_project.office.model.Office;
 import ru.metlin.empty_project.office.request.OfficeListRequest;
 import ru.metlin.empty_project.office.request.SaveOfficeRequest;
 import ru.metlin.empty_project.office.request.UpdateOfficeRequest;
+import ru.metlin.empty_project.office.response.OfficeList;
 import ru.metlin.empty_project.office.service.OfficeService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/office")
@@ -28,8 +31,8 @@ public class OfficeController {
     }
 
     @PostMapping(value = "/list")
-    private Iterable<Office> getOfficeList(@RequestBody OfficeListRequest request) {
-        return officeService.findAll();
+    private Response<List<OfficeList>> getOfficeList(@RequestBody OfficeListRequest request) {
+        return new Response<List<OfficeList>>(officeService.findAll());
     }
 
     @GetMapping(value = "/{id}")

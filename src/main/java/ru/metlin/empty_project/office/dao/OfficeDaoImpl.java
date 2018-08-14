@@ -9,6 +9,7 @@ import ru.metlin.empty_project.office.request.UpdateOfficeRequest;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import java.util.List;
 
 @Repository
 public class OfficeDaoImpl implements OfficeDao {
@@ -21,7 +22,7 @@ public class OfficeDaoImpl implements OfficeDao {
     }
 
     @Override
-    public Iterable<Office> all() {
+    public List<Office> all() {
         TypedQuery<Office> query = entityManager.createQuery("SELECT o FROM Office o", Office.class);
         return query.getResultList();
     }

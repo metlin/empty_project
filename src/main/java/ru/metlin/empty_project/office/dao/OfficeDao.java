@@ -3,6 +3,7 @@ package ru.metlin.empty_project.office.dao;
 import ru.metlin.empty_project.SuccessView;
 import ru.metlin.empty_project.office.model.Office;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface OfficeDao {
@@ -11,7 +12,7 @@ public interface OfficeDao {
 
     void update(Office office);
 
-    Iterable<Office> all();
+    List<Office> all();
 
     Office getById(Long id);
 }

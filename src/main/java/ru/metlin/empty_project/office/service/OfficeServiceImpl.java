@@ -8,11 +8,14 @@ import ru.metlin.empty_project.office.dao.OfficeDao;
 import ru.metlin.empty_project.office.model.Office;
 import ru.metlin.empty_project.office.request.SaveOfficeRequest;
 import ru.metlin.empty_project.office.request.UpdateOfficeRequest;
+import ru.metlin.empty_project.office.response.OfficeList;
 import ru.metlin.empty_project.organization.dao.OrganizationDao;
 import ru.metlin.empty_project.organization.dao.OrganizationDaoImpl;
 import ru.metlin.empty_project.organization.model.Organization;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class OfficeServiceImpl implements OfficeService {
@@ -117,11 +120,21 @@ public class OfficeServiceImpl implements OfficeService {
 
     @Override
     @Transactional
-    public Iterable<Office> findAll() {
+    public List<OfficeList> findAll() {
 
-       // тут фильтр
+        List<Office> officeList = officeDao.all();
 
-        return officeDao.all();
+        if (officeList == null) {
+            
+        }
+
+        List<OfficeList> officeListResponse = new ArrayList<>();
+
+        for (int i = 0; i < officeList.size(); i++) {
+            officeListResponse.add(new OfficeList(officeList.get(i)));
+        }
+
+        return officeListResponse;
     }
 
     @Override
@@ -134,14 +147,10 @@ public class OfficeServiceImpl implements OfficeService {
 
         Office office = officeDao.getById(id);
 
-        System.out.println("---------------что-то достал из базы------------------");
-
         if (office == null) {
             throw new Exception("this office does not exist");
         }
 
-        System.out.println("---------------достал из базы не null------------------");
-
-        return officeDao.getById(id);
+        return office;
     }
 }

@@ -12,22 +12,17 @@ public class OrganizationList {   //переделать
 
     private List<OrganizationList> responseList;
 
-    public OrganizationList(Long id, String name, Boolean isActive) {
-        this.id = id;
-        this.name = name;
-        this.isActive = isActive;
-    }
 
-    public OrganizationList(Organization organization) {
+
+ /*   public OrganizationList(Organization organization) {
         this.id = organization.getId();
         this.name = organization.getName();
         this.isActive = organization.getActive();
-    }
+    } */
 
     public OrganizationList(List<Organization> orgList) {
-        for (int i = 0; i < orgList.size(); i++) {
-            responseList.add(new OrganizationList(orgList.get(i)));
-        }
+
+
     }
 
     public OrganizationList() {

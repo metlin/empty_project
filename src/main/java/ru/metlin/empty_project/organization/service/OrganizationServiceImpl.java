@@ -97,8 +97,13 @@ public class OrganizationServiceImpl implements OrganizationService {
     @Transactional
     public OrganizationList findAll() {
 
-        return new OrganizationList(organizationDao.all());
+        List<Organization> orgList = organizationDao.all();
 
+        if (orgList.get(0) == null) {
+
+        }
+
+        return new OrganizationList(orgList);
     }
 
     @Override
@@ -115,6 +120,6 @@ public class OrganizationServiceImpl implements OrganizationService {
             throw new Exception("this organization does not exist");
         }
 
-        return new GetOrganization(organizationDao.getById(id));
+        return new GetOrganization(organization);
     }
 }
