@@ -6,6 +6,7 @@ import ru.metlin.empty_project.country.model.Country;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import java.util.List;
 
 @Repository
 public class CountryDaoImpl implements CountryDao {
@@ -18,7 +19,7 @@ public class CountryDaoImpl implements CountryDao {
     }
 
     @Override
-    public Iterable<Country> all() {
+    public List<Country> all() {
         TypedQuery<Country> query = entityManager.createQuery("SELECT c FROM Country c", Country.class);
         return query.getResultList();
     }

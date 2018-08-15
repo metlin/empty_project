@@ -6,6 +6,7 @@ import ru.metlin.empty_project.document.model.Document;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import java.util.List;
 
 @Repository
 public class DocumentDaoImpl implements DocumentDao {
@@ -18,7 +19,7 @@ public class DocumentDaoImpl implements DocumentDao {
     }
 
     @Override
-    public Iterable<Document> all() {
+    public List<Document> all() {
         TypedQuery<Document> query = entityManager.createQuery("SELECT d FROM Document d", Document.class);
         return query.getResultList();
     }

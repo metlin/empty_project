@@ -53,8 +53,8 @@ public class UserServiceImpl implements UserService {
         }
 
         for (int i = 0; i < firstName.length(); i++) {
-            if (firstName.charAt(i) > '0' || firstName.charAt(i) < '9' ) {
-                throw new Exception("the name cannot contain numbers");
+            if (firstName.charAt(i) < 'A' || firstName.charAt(i) > 'z' ) {
+                throw new Exception("the name cannot contain symbols");
             }
         }
 
@@ -124,8 +124,8 @@ public class UserServiceImpl implements UserService {
         }
 
         for (int i = 0; i < firstName.length(); i++) {
-            if (firstName.charAt(i) > '0' || firstName.charAt(i) < '9' ) {
-                throw new Exception("the name cannot contain numbers");
+            if (firstName.charAt(i) < 'A' || firstName.charAt(i) > 'z' ) {
+                throw new Exception("the name cannot contain symbols");
             }
         }
 

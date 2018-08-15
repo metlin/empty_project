@@ -4,8 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.metlin.empty_project.country.dao.CountryDao;
 import ru.metlin.empty_project.country.model.Country;
+import ru.metlin.empty_project.country.responce.CountryList;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class CountryServiceImpl implements CountryService{
@@ -19,8 +22,20 @@ public class CountryServiceImpl implements CountryService{
 
     @Override
     @Transactional
-    public Iterable<Country> findAll() {
-        return countryDao.all();
+    public List<CountryList> findAll() throws Exception {
+        List<Country> countryList = countryDao.all();
+
+        if (countryList == null) {
+            throw new Exception("Country list does not exist");
+        }
+
+        List<CountryList> countryListResponse = new ArrayList<>();
+
+        for (int i = 0; i < countryList.size(); i++) {
+            countryListResponse.add(new CountryList(countryList.get(i)));
+        }
+
+        return countryListResponse;
     }
 }
 

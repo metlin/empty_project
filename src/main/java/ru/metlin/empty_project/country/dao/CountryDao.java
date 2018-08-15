@@ -2,9 +2,11 @@ package ru.metlin.empty_project.country.dao;
 
 import ru.metlin.empty_project.country.model.Country;
 
+import java.util.List;
+
 public interface CountryDao {
 
-    Iterable<Country> all();
+    List<Country> all();
 
     Country getById(Long id);
 }

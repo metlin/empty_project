@@ -4,8 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.metlin.empty_project.document.dao.DocumentDao;
 import ru.metlin.empty_project.document.model.Document;
+import ru.metlin.empty_project.document.response.DocumentList;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class DocumentServiceImpl implements DocumentService {
@@ -19,7 +22,19 @@ public class DocumentServiceImpl implements DocumentService {
 
     @Override
     @Transactional
-    public Iterable<Document> findAll() {
-        return documentDao.all();
+    public List<DocumentList> findAll() throws Exception {
+        List<Document> docList = documentDao.all();
+
+        if (docList == null) {
+            throw new Exception("Document list does not exist");
+        }
+
+        List<DocumentList> docListResponse = new ArrayList<>();
+
+        for (int i = 0; i < docList.size(); i++) {
+            docListResponse.add(new DocumentList(docList.get(i)));
+        }
+
+        return docListResponse;
     }
 }
