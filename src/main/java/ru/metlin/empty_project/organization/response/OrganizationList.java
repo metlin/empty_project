@@ -4,25 +4,17 @@ import ru.metlin.empty_project.organization.model.Organization;
 
 import java.util.List;
 
-public class OrganizationList {   //переделать
+public class OrganizationList {
 
     private Long id;
     private String name;
     private Boolean isActive;
 
-    private List<OrganizationList> responseList;
 
-
-
- /*   public OrganizationList(Organization organization) {
+    public OrganizationList(Organization organization) {
         this.id = organization.getId();
         this.name = organization.getName();
         this.isActive = organization.getActive();
-    } */
-
-    public OrganizationList(List<Organization> orgList) {
-
-
     }
 
     public OrganizationList() {
@@ -50,13 +42,5 @@ public class OrganizationList {   //переделать
 
     public void setActive(Boolean active) {
         isActive = active;
-    }
-
-    public List<OrganizationList> getResponseList() {
-        return responseList;
-    }
-
-    public void setResponseList(List<OrganizationList> responseList) {
-        this.responseList = responseList;
     }
 }

@@ -8,6 +8,7 @@ import ru.metlin.empty_project.office.dao.OfficeDao;
 import ru.metlin.empty_project.office.model.Office;
 import ru.metlin.empty_project.office.request.SaveOfficeRequest;
 import ru.metlin.empty_project.office.request.UpdateOfficeRequest;
+import ru.metlin.empty_project.office.response.GetOffice;
 import ru.metlin.empty_project.office.response.OfficeList;
 import ru.metlin.empty_project.organization.dao.OrganizationDao;
 import ru.metlin.empty_project.organization.dao.OrganizationDaoImpl;
@@ -120,12 +121,12 @@ public class OfficeServiceImpl implements OfficeService {
 
     @Override
     @Transactional
-    public List<OfficeList> findAll() {
+    public List<OfficeList> findAll() throws Exception {
 
         List<Office> officeList = officeDao.all();
 
         if (officeList == null) {
-            
+            throw new Exception("officeList does not exist");
         }
 
         List<OfficeList> officeListResponse = new ArrayList<>();
@@ -139,7 +140,7 @@ public class OfficeServiceImpl implements OfficeService {
 
     @Override
     @Transactional
-    public Office findById(Long id) throws Exception {
+    public GetOffice findById(Long id) throws Exception {
 
         if (id < 1) {
             throw new Exception("id greater than 0");
@@ -151,6 +152,6 @@ public class OfficeServiceImpl implements OfficeService {
             throw new Exception("this office does not exist");
         }
 
-        return office;
+        return new GetOffice(office);
     }
 }

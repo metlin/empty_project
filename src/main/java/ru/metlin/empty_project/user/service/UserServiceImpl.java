@@ -13,8 +13,12 @@ import ru.metlin.empty_project.user.dao.UserDao;
 import ru.metlin.empty_project.user.model.User;
 import ru.metlin.empty_project.user.request.SaveUserRequest;
 import ru.metlin.empty_project.user.request.UpdateUserRequest;
+import ru.metlin.empty_project.user.response.GetUser;
+import ru.metlin.empty_project.user.response.UserList;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -167,16 +171,26 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public Iterable<User> findAll() {
+    public List<UserList> findAll() throws Exception {
 
-       // в этом методе запилить фильтр
+        List<User> userList = userDao.all();
 
-        return userDao.all();
+        if (userList == null) {
+            throw new Exception("userList does not exist");
+        }
+
+        List<UserList> userListResponse = new ArrayList<>();
+
+        for (int i = 0; i < userList.size(); i++) {
+            userListResponse.add(new UserList(userList.get(i)));
+        }
+
+        return userListResponse;
     }
 
     @Override
     @Transactional
-    public User findById(Long id) throws Exception {
+    public GetUser findById(Long id) throws Exception {
 
         if (id < 1) {
             throw new Exception("id greater than 0");
@@ -188,6 +202,6 @@ public class UserServiceImpl implements UserService {
             throw new Exception("this user does not exist");
         }
 
-        return userDao.getById(id);
+        return new GetUser(user);
     }
 }

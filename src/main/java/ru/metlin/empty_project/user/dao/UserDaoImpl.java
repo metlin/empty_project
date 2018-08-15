@@ -7,6 +7,7 @@ import ru.metlin.empty_project.user.model.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import java.util.List;
 
 @Repository
 public class UserDaoImpl implements UserDao {
@@ -20,7 +21,7 @@ public class UserDaoImpl implements UserDao {
 
 
     @Override
-    public Iterable<User> all() {
+    public List<User> all() {
         TypedQuery<User> query = entityManager.createQuery("SELECT u FROM User u", User.class);
         return query.getResultList();
     }

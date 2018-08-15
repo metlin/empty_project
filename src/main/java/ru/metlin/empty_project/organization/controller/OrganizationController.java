@@ -31,8 +31,12 @@ public class OrganizationController {
     }
 
     @PostMapping(value = "/list")
-    private Response<OrganizationList> getOrganizationList(@RequestBody OrganizationListRequest request) {
-        return new Response<OrganizationList>(organizationService.findAll());
+    private Response<List<OrganizationList>> getOrganizationList(@RequestBody OrganizationListRequest request) {
+        try {
+            return new Response<List<OrganizationList>>(organizationService.findAll());
+        } catch (Exception e) {
+            return new Response<List<OrganizationList>>(e.getMessage());
+        }
     }
 
     @GetMapping(value = "/{id}")

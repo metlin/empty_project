@@ -13,8 +13,11 @@ import ru.metlin.empty_project.user.model.User;
 import ru.metlin.empty_project.user.request.SaveUserRequest;
 import ru.metlin.empty_project.user.request.UpdateUserRequest;
 import ru.metlin.empty_project.user.request.UserListRequest;
+import ru.metlin.empty_project.user.response.GetUser;
+import ru.metlin.empty_project.user.response.UserList;
 import ru.metlin.empty_project.user.service.UserService;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -29,16 +32,20 @@ public class UserController {
     }
 
     @PostMapping(value = "/list")
-    private Iterable<User> getOfficeList(@RequestBody UserListRequest request) {
-        return userService.findAll();
+    private Response<List<UserList>> getOfficeList(@RequestBody UserListRequest request) {
+        try {
+            return new Response<List<UserList>>(userService.findAll());
+        } catch (Exception e) {
+            return new Response<List<UserList>>(e.getMessage());
+        }
     }
 
     @GetMapping(value = "/{id}")
-    private Response<User> getOffice(@PathVariable Long id) {
+    private Response<GetUser> getOffice(@PathVariable Long id) {
         try {
-            return new Response<User>(userService.findById(id));
+            return new Response<GetUser>(userService.findById(id));
         } catch (Exception e) {
-            return new Response<User>(e.getMessage());
+            return new Response<GetUser>(e.getMessage());
         }
     }
 

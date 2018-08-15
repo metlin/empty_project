@@ -14,6 +14,7 @@ import ru.metlin.empty_project.office.model.Office;
 import ru.metlin.empty_project.office.request.OfficeListRequest;
 import ru.metlin.empty_project.office.request.SaveOfficeRequest;
 import ru.metlin.empty_project.office.request.UpdateOfficeRequest;
+import ru.metlin.empty_project.office.response.GetOffice;
 import ru.metlin.empty_project.office.response.OfficeList;
 import ru.metlin.empty_project.office.service.OfficeService;
 
@@ -32,15 +33,19 @@ public class OfficeController {
 
     @PostMapping(value = "/list")
     private Response<List<OfficeList>> getOfficeList(@RequestBody OfficeListRequest request) {
-        return new Response<List<OfficeList>>(officeService.findAll());
+        try {
+            return new Response<List<OfficeList>>(officeService.findAll());
+        } catch (Exception e) {
+            return new Response<List<OfficeList>>(e.getMessage());
+        }
     }
 
     @GetMapping(value = "/{id}")
-    private Response<Office> getOffice(@PathVariable Long id) {
+    private Response<GetOffice> getOffice(@PathVariable Long id) {
         try {
-            return new Response<Office>(officeService.findById(id));
+            return new Response<GetOffice>(officeService.findById(id));
         } catch (Exception e) {
-            return new Response<Office>(e.getMessage());
+            return new Response<GetOffice>(e.getMessage());
         }
     }
 

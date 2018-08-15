@@ -15,7 +15,7 @@ public interface OrganizationService {
 
     SuccessView update(UpdateOrganizationRequest request) throws Exception;
 
-    OrganizationList findAll();
+    List<OrganizationList> findAll() throws Exception;
 
     GetOrganization findById(Long id) throws Exception;
 }

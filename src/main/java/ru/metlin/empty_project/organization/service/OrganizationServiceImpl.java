@@ -95,15 +95,21 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     @Transactional
-    public OrganizationList findAll() {
+    public List<OrganizationList> findAll() throws Exception{
 
         List<Organization> orgList = organizationDao.all();
 
-        if (orgList.get(0) == null) {
-
+        if (orgList == null) {
+            throw new Exception("organizationList does not exist");
         }
 
-        return new OrganizationList(orgList);
+        List<OrganizationList> orgListResponse = new ArrayList<>();
+
+        for (int i = 0; i < orgList.size(); i++) {
+            orgListResponse.add(new OrganizationList(orgList.get(i)));
+        }
+
+        return orgListResponse;
     }
 
     @Override
@@ -114,7 +120,7 @@ public class OrganizationServiceImpl implements OrganizationService {
             throw new Exception("id greater than 0");
         }
 
-        Organization  organization = organizationDao.getById(id);
+        Organization organization = organizationDao.getById(id);
 
         if (organization == null) {
             throw new Exception("this organization does not exist");
