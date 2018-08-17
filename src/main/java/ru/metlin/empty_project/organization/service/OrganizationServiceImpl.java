@@ -1,11 +1,15 @@
 package ru.metlin.empty_project.organization.service;
 
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.metlin.empty_project.SuccessView;
 import ru.metlin.empty_project.office.dao.OfficeDao;
 import ru.metlin.empty_project.organization.dao.OrganizationDao;
 import ru.metlin.empty_project.organization.model.Organization;
+import ru.metlin.empty_project.organization.request.OrganizationListRequest;
 import ru.metlin.empty_project.organization.request.SaveOrganizationRequest;
 import ru.metlin.empty_project.organization.request.UpdateOrganizationRequest;
 import ru.metlin.empty_project.organization.response.GetOrganization;
@@ -95,9 +99,9 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     @Transactional
-    public List<OrganizationList> findAll() throws Exception{
+    public List<OrganizationList> findAll(OrganizationListRequest request) throws Exception {
 
-        List<Organization> orgList = organizationDao.all();
+        List<Organization> orgList = organizationDao.all(request);
 
         if (orgList == null) {
             throw new Exception("organizationList does not exist");

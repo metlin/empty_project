@@ -2,6 +2,7 @@ package ru.metlin.empty_project.organization.service;
 
 import ru.metlin.empty_project.SuccessView;
 import ru.metlin.empty_project.organization.model.Organization;
+import ru.metlin.empty_project.organization.request.OrganizationListRequest;
 import ru.metlin.empty_project.organization.request.SaveOrganizationRequest;
 import ru.metlin.empty_project.organization.request.UpdateOrganizationRequest;
 import ru.metlin.empty_project.organization.response.GetOrganization;
@@ -15,7 +16,7 @@ public interface OrganizationService {
 
     SuccessView update(UpdateOrganizationRequest request) throws Exception;
 
-    List<OrganizationList> findAll() throws Exception;
+    List<OrganizationList> findAll(OrganizationListRequest request) throws Exception;
 
     GetOrganization findById(Long id) throws Exception;
 }

@@ -33,7 +33,7 @@ public class OrganizationController {
     @PostMapping(value = "/list")
     private Response<List<OrganizationList>> getOrganizationList(@RequestBody OrganizationListRequest request) {
         try {
-            return new Response<List<OrganizationList>>(organizationService.findAll());
+            return new Response<List<OrganizationList>>(organizationService.findAll(request));
         } catch (Exception e) {
             return new Response<List<OrganizationList>>(e.getMessage());
         }
