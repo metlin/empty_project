@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import ru.metlin.empty_project.SuccessView;
 import ru.metlin.empty_project.office.dao.OfficeDao;
 import ru.metlin.empty_project.office.model.Office;
+import ru.metlin.empty_project.office.request.OfficeListRequest;
 import ru.metlin.empty_project.office.request.SaveOfficeRequest;
 import ru.metlin.empty_project.office.request.UpdateOfficeRequest;
 import ru.metlin.empty_project.office.response.GetOffice;
@@ -121,11 +122,11 @@ public class OfficeServiceImpl implements OfficeService {
 
     @Override
     @Transactional
-    public List<OfficeList> findAll() throws Exception {
+    public List<OfficeList> findAll(OfficeListRequest request) throws Exception {
 
-        List<Office> officeList = officeDao.all();
+        List<Office> officeList = officeDao.all(request);
 
-        if (officeList == null) {
+        if (officeList.isEmpty()) {
             throw new Exception("officeList does not exist");
         }
 

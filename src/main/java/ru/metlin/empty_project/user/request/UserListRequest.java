@@ -7,21 +7,21 @@ public class UserListRequest {
     private String secondName;
     private String middleName;
     private String position;
-    private Long docId;
-    private Long countryId;
+ //   private Long docId;
+ //   private Long countryId;
 
     public UserListRequest() {
     }
 
     public UserListRequest(Long officeId, String firstName, String secondName, String middleName,
-                           String position, Long docId, Long countryId) {
+                           String position) {
         this.officeId = officeId;
         this.firstName = firstName;
         this.secondName = secondName;
         this.middleName = middleName;
         this.position = position;
-        this.docId = docId;
-        this.countryId = countryId;
+     //   this.docId = docId;
+     //   this.countryId = countryId;
     }
 
     public Long getOfficeId() {
@@ -64,7 +64,7 @@ public class UserListRequest {
         this.position = position;
     }
 
-    public Long getDocId() {
+ /*   public Long getDocId() {
         return docId;
     }
 
@@ -78,6 +78,6 @@ public class UserListRequest {
 
     public void setCountryId(Long countryId) {
         this.countryId = countryId;
-    }
+    } */
 }
 

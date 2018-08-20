@@ -9,6 +9,7 @@ import ru.metlin.empty_project.user.request.UpdateUserRequest;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -55,12 +56,12 @@ public class User {
     @JoinColumn(name = "office_id", nullable = false)
     private Office office;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "doc_id")
+    @ManyToOne
+    @JoinColumn(name = "doc_id", nullable = false)
     private Document document;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "country_id")
+    @ManyToOne
+    @JoinColumn(name = "country_id", nullable = false)
     private Country country;
 
     public User(Long id, String firstName, String secondName, String middleName, String position,

@@ -103,7 +103,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 
         List<Organization> orgList = organizationDao.all(request);
 
-        if (orgList == null) {
+        if (orgList.isEmpty()) {
             throw new Exception("organizationList does not exist");
         }
 

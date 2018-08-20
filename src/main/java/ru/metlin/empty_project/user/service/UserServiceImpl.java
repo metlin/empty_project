@@ -13,6 +13,7 @@ import ru.metlin.empty_project.user.dao.UserDao;
 import ru.metlin.empty_project.user.model.User;
 import ru.metlin.empty_project.user.request.SaveUserRequest;
 import ru.metlin.empty_project.user.request.UpdateUserRequest;
+import ru.metlin.empty_project.user.request.UserListRequest;
 import ru.metlin.empty_project.user.response.GetUser;
 import ru.metlin.empty_project.user.response.UserList;
 
@@ -171,11 +172,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public List<UserList> findAll() throws Exception {
+    public List<UserList> findAll(UserListRequest request) throws Exception {
 
-        List<User> userList = userDao.all();
+        List<User> userList = userDao.all(request);
 
-        if (userList == null) {
+        if (userList.isEmpty()) {
             throw new Exception("userList does not exist");
         }
 

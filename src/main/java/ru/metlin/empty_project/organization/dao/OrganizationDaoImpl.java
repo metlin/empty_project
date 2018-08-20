@@ -32,8 +32,8 @@ public class OrganizationDaoImpl implements OrganizationDao {
 
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 
-        CriteriaQuery<Organization> orgCriteria = cb.createQuery(Organization.class); // тип возвращ данных
-        Root<Organization> orgRoot = orgCriteria.from(Organization.class); // откуда берем данные
+        CriteriaQuery<Organization> orgCriteria = cb.createQuery(Organization.class);
+        Root<Organization> orgRoot = orgCriteria.from(Organization.class);
 
         TypedQuery<Organization> query = entityManager.createQuery(
                 orgCriteria.select(orgRoot).where(cb.equal(orgRoot.get("name"), organization.getName())));

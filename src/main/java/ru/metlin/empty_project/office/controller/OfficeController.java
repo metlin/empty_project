@@ -34,7 +34,7 @@ public class OfficeController {
     @PostMapping(value = "/list")
     private Response<List<OfficeList>> getOfficeList(@RequestBody OfficeListRequest request) {
         try {
-            return new Response<List<OfficeList>>(officeService.findAll());
+            return new Response<List<OfficeList>>(officeService.findAll(request));
         } catch (Exception e) {
             return new Response<List<OfficeList>>(e.getMessage());
         }

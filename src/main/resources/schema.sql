@@ -21,9 +21,9 @@
 CREATE TABLE IF NOT EXISTS User (
     user_id         BIGINT PRIMARY KEY AUTO_INCREMENT,
     first_name      VARCHAR(50) NOT NULL,
-    second_name     VARCHAR(50) NULL,
-    middle_name     VARCHAR(100)  NULL,
-    phone           VARCHAR(20)  NULL,
+    second_name     VARCHAR(50) NOT NULL,
+    middle_name     VARCHAR(100) NOT NULL,
+    phone           VARCHAR(20) NOT NULL,
     position        VARCHAR(100)  NOT NULL,
     identified      TINYINT(1)  NOT NULL,
     doc_number      VARCHAR(20) NOT NULL,

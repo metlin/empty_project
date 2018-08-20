@@ -34,7 +34,7 @@ public class UserController {
     @PostMapping(value = "/list")
     private Response<List<UserList>> getOfficeList(@RequestBody UserListRequest request) {
         try {
-            return new Response<List<UserList>>(userService.findAll());
+            return new Response<List<UserList>>(userService.findAll(request));
         } catch (Exception e) {
             return new Response<List<UserList>>(e.getMessage());
         }

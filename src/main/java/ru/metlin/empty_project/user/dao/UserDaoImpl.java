@@ -4,9 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.metlin.empty_project.SuccessView;
 import ru.metlin.empty_project.user.model.User;
+import ru.metlin.empty_project.user.request.UserListRequest;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
@@ -21,8 +25,18 @@ public class UserDaoImpl implements UserDao {
 
 
     @Override
-    public List<User> all() {
-        TypedQuery<User> query = entityManager.createQuery("SELECT u FROM User u", User.class);
+    public List<User> all(UserListRequest user) {
+      //  TypedQuery<User> query = entityManager.createQuery("SELECT u FROM User u", User.class);
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+
+        CriteriaQuery<User> userCriteria = cb.createQuery(User.class);
+        Root<User> userRoot = userCriteria.from(User.class);
+
+        userCriteria.select(userRoot);
+        userCriteria.where(cb.equal(userRoot.get("office"), user.getOfficeId()));
+
+        TypedQuery<User> query = entityManager.createQuery(userCriteria);
+
         return query.getResultList();
     }
 

@@ -4,11 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.metlin.empty_project.SuccessView;
 import ru.metlin.empty_project.office.model.Office;
+import ru.metlin.empty_project.office.request.OfficeListRequest;
 import ru.metlin.empty_project.office.request.UpdateOfficeRequest;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Path;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
@@ -22,8 +27,21 @@ public class OfficeDaoImpl implements OfficeDao {
     }
 
     @Override
-    public List<Office> all() {
-        TypedQuery<Office> query = entityManager.createQuery("SELECT o FROM Office o", Office.class);
+    public List<Office> all(OfficeListRequest office) {
+     //   TypedQuery<Office> query = entityManager.createQuery("SELECT o FROM Office o", Office.class);
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+
+        CriteriaQuery<Office> offCriteria = cb.createQuery(Office.class);
+        Root<Office> offRoot = offCriteria.from(Office.class);
+
+        offCriteria.select(offRoot);
+
+        offCriteria.where(cb.equal(offRoot.get("organization"), office.getOrgId()));
+              //  .where(cb.equal(offRoot.get("phone"), office.getPhone()));
+     //   offCriteria.where(cb.equal(offRoot.get("name"), office.getName()));
+
+        TypedQuery<Office> query = entityManager.createQuery(offCriteria);
+
         return query.getResultList();
     }
 

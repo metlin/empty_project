@@ -2,13 +2,17 @@ package ru.metlin.empty_project.country.model;
 
 import ru.metlin.empty_project.user.model.User;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.util.List;
 
 @Entity
 @Table(name = "Country")
@@ -25,8 +29,8 @@ public class Country {
     @Column(name = "country_code", length = 3, nullable = false)
     private Long code;
 
-    @OneToOne(mappedBy = "country")
-    private User user;
+    @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<User> userList;
 
     public Country(Long countryId, String name, Long code) {
         this.countryId = countryId;
@@ -61,11 +65,11 @@ public class Country {
         this.code = code;
     }
 
-    public User getUser() {
-        return user;
+    public List<User> getUserList() {
+        return userList;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
     }
 }
