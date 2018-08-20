@@ -47,10 +47,6 @@ public class OfficeServiceImpl implements OfficeService {
             }
         }
 
-        if (officeName.length() < 2 ) {
-            throw new Exception("short office name");
-        }
-
         String officePhone = request.getPhone();
 
         for (int i = 0; i < officePhone.length(); i++) {
@@ -92,10 +88,6 @@ public class OfficeServiceImpl implements OfficeService {
             if (officeName.charAt(i) == ' ') {
                 throw new Exception("the name must not contain spaces");
             }
-        }
-
-        if (officeName.length() < 2 ) {
-            throw new Exception("short office name");
         }
 
         String officePhone = request.getPhone();

@@ -31,29 +31,44 @@ public class OrganizationServiceImpl implements OrganizationService {
         this.officeDao = officeDao;
     }
 
-    @Override
-    @Transactional
-    public SuccessView save(SaveOrganizationRequest request) throws Exception {
+    public OrganizationServiceImpl() {
+    }
 
-        if (request.getName() == null) {
+    public boolean validationByName(String name) throws Exception {
+        if (name == null) {
             throw new Exception("this organization does not exist");
         }
 
-        String orgName = request.getName();
-
-        for (int i = 0; i < orgName.length(); i++) {
-            if (orgName.charAt(i) < 'A' || orgName.charAt(i) > 'z' ) {
+        for (int i = 0; i < name.length(); i++) {
+            if (name.charAt(i) < 'A' || name.charAt(i) > 'z' ) {
                 throw new Exception("the name cannot contain symbols");
             }
         }
 
-        if (request.getInn() < 1000000000L || request.getInn() > 9999999999L) {
+        for (int i = 0; i < name.length(); i++) {
+            if (name.charAt(i) == ' ') {
+                throw new Exception("the name must not contain spaces");
+            }
+        }
+
+        return true;
+    }
+
+    public void validationByInnAndKpp(Long inn, Long kpp) throws Exception {
+        if (inn < 1000000000L || inn > 9999999999L) {
             throw new Exception("inn must contain 10 digits");
         }
 
-        if (request.getKpp() < 100000000L || request.getKpp() > 999999999L) {
+        if (kpp < 100000000L || kpp > 999999999L) {
             throw new Exception("kpp must contain 9 digits");
         }
+    }
+
+    @Override
+    @Transactional
+    public SuccessView save(SaveOrganizationRequest request) throws Exception {
+        validationByName(request.getName());
+        validationByInnAndKpp(request.getInn(), request.getKpp());
 
         Organization organization = new Organization(request);
 
@@ -70,25 +85,8 @@ public class OrganizationServiceImpl implements OrganizationService {
             throw new Exception("this organization does not exist");
         }
 
-        if (request.getName() == null) {
-            throw new Exception("this organization does not exist");
-        }
-
-        String orgName = request.getName();
-
-        for (int i = 0; i < orgName.length(); i++) {
-            if (orgName.charAt(i) < 'A' || orgName.charAt(i) > 'z' ) {
-                throw new Exception("the name cannot contain symbols");
-            }
-        }
-
-        if (request.getInn() < 1000000000L || request.getInn() > 9999999999L) {
-            throw new Exception("inn must contain 10 digits");
-        }
-
-        if (request.getKpp() < 100000000L || request.getKpp() > 999999999L) {
-            throw new Exception("kpp must contain 9 digits");
-        }
+        validationByName(request.getName());
+        validationByInnAndKpp(request.getInn(), request.getKpp());
 
         Organization organization = new Organization(request);
 
