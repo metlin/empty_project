@@ -54,7 +54,8 @@ public class OrganizationServiceImpl implements OrganizationService {
         return true;
     }
 
-    public void validationByInnAndKpp(Long inn, Long kpp) throws Exception {
+    public boolean validationByInnAndKpp(Long inn, Long kpp) throws Exception {
+
         if (inn < 1000000000L || inn > 9999999999L) {
             throw new Exception("inn must contain 10 digits");
         }
@@ -62,6 +63,8 @@ public class OrganizationServiceImpl implements OrganizationService {
         if (kpp < 100000000L || kpp > 999999999L) {
             throw new Exception("kpp must contain 9 digits");
         }
+
+        return true;
     }
 
     @Override

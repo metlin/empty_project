@@ -24,10 +24,10 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private final UserDao userDao;
-    private final OfficeDao officeDao;
-    private final DocumentDao documentDao;
-    private final CountryDao countryDao;
+    private UserDao userDao;
+    private OfficeDao officeDao;
+    private DocumentDao documentDao;
+    private CountryDao countryDao;
 
     @Autowired
     public UserServiceImpl(UserDao userDao, OfficeDao officeDao, DocumentDao documentDao, CountryDao countryDao) {
@@ -37,20 +37,12 @@ public class UserServiceImpl implements UserService {
         this.countryDao = countryDao;
     }
 
-    @Override
-    @Transactional
-    public SuccessView save(SaveUserRequest request) throws Exception {
+    public UserServiceImpl() {
+    }
 
-        String firstName = request.getFirstName();
-
+    public boolean validationByFirstName(String firstName) throws Exception {
         if (firstName == null) {
-            throw new Exception("User should have a name");
-        }
-
-        for (int i = 0; i < firstName.length(); i++) {
-            if (firstName.charAt(i) == ' ') {
-                throw new Exception("the name must not contain spaces");
-            }
+            throw new Exception("this user does not exist");
         }
 
         for (int i = 0; i < firstName.length(); i++) {
@@ -59,9 +51,36 @@ public class UserServiceImpl implements UserService {
             }
         }
 
-        if (request.getPosition() == null) {
+        for (int i = 0; i < firstName.length(); i++) {
+            if (firstName.charAt(i) == ' ') {
+                throw new Exception("the name must not contain spaces");
+            }
+        }
+
+        return true;
+    }
+
+    public boolean validationByPosition(String position) throws Exception {
+
+        if (position == null) {
             throw new Exception("user should have a position");
         }
+
+        for (int i = 0; i < position.length(); i++) {
+            if (position.charAt(i) < 'A' || position.charAt(i) > 'z' ) {
+                throw new Exception("the name cannot contain symbols");
+            }
+        }
+
+        return true;
+    }
+
+    @Override
+    @Transactional
+    public SuccessView save(SaveUserRequest request) throws Exception {
+
+        validationByFirstName(request.getFirstName());
+        validationByPosition(request.getPosition());
 
         if (request.getOfficeId() == 0) {
             throw new Exception("this user does not exist");
@@ -112,27 +131,8 @@ public class UserServiceImpl implements UserService {
             throw new Exception("the user must have an ID");
         }
 
-        String firstName = request.getFirstName();
-
-        if (firstName == null) {
-            throw new Exception("User should have a name");
-        }
-
-        for (int i = 0; i < firstName.length(); i++) {
-            if (firstName.charAt(i) == ' ') {
-                throw new Exception("the name must not contain spaces");
-            }
-        }
-
-        for (int i = 0; i < firstName.length(); i++) {
-            if (firstName.charAt(i) < 'A' || firstName.charAt(i) > 'z' ) {
-                throw new Exception("the name cannot contain symbols");
-            }
-        }
-
-        if (request.getPosition() == null) {
-            throw new Exception("user should have a position");
-        }
+        validationByFirstName(request.getFirstName());
+        validationByPosition(request.getPosition());
 
         if (request.getOfficeId() == 0) {
             throw new Exception("this user does not exist");

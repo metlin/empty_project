@@ -18,17 +18,54 @@ import ru.metlin.empty_project.organization.model.Organization;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class OfficeServiceImpl implements OfficeService {
 
-    private final OfficeDao officeDao;
-    private final OrganizationDao orgDao;
+    private OfficeDao officeDao;
+    private OrganizationDao orgDao;
 
     @Autowired
     public OfficeServiceImpl(OfficeDao officeDao, OrganizationDao orgDao) {
         this.officeDao = officeDao;
         this.orgDao = orgDao;
+    }
+
+    public OfficeServiceImpl() {
+    }
+
+    public boolean validationByName(String name) throws Exception {
+        if (name == null) {
+            throw new Exception("this office does not exist");
+        }
+
+        for (int i = 0; i < name.length(); i++) {
+            if (name.charAt(i) < 'A' || name.charAt(i) > 'z' ) {
+                throw new Exception("the name cannot contain symbols");
+            }
+        }
+
+        for (int i = 0; i < name.length(); i++) {
+            if (name.charAt(i) == ' ') {
+                throw new Exception("the name must not contain spaces");
+            }
+        }
+
+        return true;
+    }
+
+    public boolean validationByPhone(String phone) throws Exception {
+
+        Pattern pattern = Pattern.compile("^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$");
+        Matcher matcher = pattern.matcher(phone);
+
+        if (!matcher.matches()) {
+            throw new Exception("incorrect phone number");
+        }
+
+        return true;
     }
 
     @Override
@@ -39,21 +76,8 @@ public class OfficeServiceImpl implements OfficeService {
             throw new Exception("this office does not exist");
         }
 
-        String officeName = request.getName();
-
-        for (int i = 0; i < officeName.length(); i++) {
-            if (officeName.charAt(i) == ' ') {
-                throw new Exception("the name must not contain spaces");
-            }
-        }
-
-        String officePhone = request.getPhone();
-
-        for (int i = 0; i < officePhone.length(); i++) {
-            if (officePhone.charAt(i) < '0' || officePhone.charAt(i) > '9' ) {
-                throw new Exception("phone number cannot contain letters");
-            }
-        }
+        validationByName(request.getName());
+        validationByPhone(request.getPhone());
 
         Organization organization = orgDao.getById(request.getOrgId());
 
@@ -82,21 +106,8 @@ public class OfficeServiceImpl implements OfficeService {
             throw new Exception("this office does not exist");
         }
 
-        String officeName = request.getName();
-
-        for (int i = 0; i < officeName.length(); i++) {
-            if (officeName.charAt(i) == ' ') {
-                throw new Exception("the name must not contain spaces");
-            }
-        }
-
-        String officePhone = request.getPhone();
-
-        for (int i = 0; i < officePhone.length(); i++) {
-            if (officePhone.charAt(i) < '0' || officePhone.charAt(i) > '9' ) {
-                throw new Exception("phone number cannot contain letters");
-            }
-        }
+        validationByName(request.getName());
+        validationByPhone(request.getPhone());
 
         Organization organization = orgDao.getById(request.getOrgId());
 
