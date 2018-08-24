@@ -12,11 +12,11 @@ import java.util.List;
 
 public interface UserService {
 
-    SuccessView save(SaveUserRequest request) throws Exception;
+    SuccessView save(SaveUserRequest request);
 
-    SuccessView update(UpdateUserRequest request) throws Exception;
+    SuccessView update(UpdateUserRequest request);
 
-    List<UserList> findAll(UserListRequest request) throws Exception;
+    List<UserList> findAll(UserListRequest request);
 
-    GetUser findById(Long id) throws Exception;
+    GetUser findById(Long id);
 }

@@ -25,7 +25,7 @@ public class OrganizationServiceTest {
     private OrganizationServiceImpl organization = new OrganizationServiceImpl();
 
     @Test
-    public void validationByNameTestPositive () throws Exception {
+    public void validationByNameTestPositive() throws Exception {
         assertTrue(organization.validationByName("Gazprom"));
     }
 

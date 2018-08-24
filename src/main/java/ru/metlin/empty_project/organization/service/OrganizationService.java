@@ -12,11 +12,11 @@ import java.util.List;
 
 public interface OrganizationService {
 
-    SuccessView save(SaveOrganizationRequest request) throws Exception;
+    SuccessView save(SaveOrganizationRequest request);
 
-    SuccessView update(UpdateOrganizationRequest request) throws Exception;
+    SuccessView update(UpdateOrganizationRequest request);
 
-    List<OrganizationList> findAll(OrganizationListRequest request) throws Exception;
+    List<OrganizationList> findAll(OrganizationListRequest request);
 
-    GetOrganization findById(Long id) throws Exception;
+    GetOrganization findById(Long id);
 }

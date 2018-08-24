@@ -18,12 +18,14 @@ import java.util.List;
 @Repository
 public class OrganizationDaoImpl implements OrganizationDao {
 
-    private final EntityManager entityManager;
-
+    private EntityManager entityManager;
 
     @Autowired
     public OrganizationDaoImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
+    }
+
+    public OrganizationDaoImpl() {
     }
 
     @Override

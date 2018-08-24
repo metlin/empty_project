@@ -6,6 +6,9 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.metlin.empty_project.SuccessView;
+import ru.metlin.empty_project.exception.EmptyListException;
+import ru.metlin.empty_project.exception.InvalidNameException;
+import ru.metlin.empty_project.exception.InvalidValueException;
 import ru.metlin.empty_project.office.dao.OfficeDao;
 import ru.metlin.empty_project.organization.dao.OrganizationDao;
 import ru.metlin.empty_project.organization.model.Organization;
@@ -34,34 +37,34 @@ public class OrganizationServiceImpl implements OrganizationService {
     public OrganizationServiceImpl() {
     }
 
-    public boolean validationByName(String name) throws Exception {
+    public boolean validationByName(String name) {
         if (name == null) {
-            throw new Exception("this organization does not exist");
+            throw new NullPointerException("The organization does not exist");
         }
 
         for (int i = 0; i < name.length(); i++) {
             if (name.charAt(i) < 'A' || name.charAt(i) > 'z' ) {
-                throw new Exception("the name cannot contain symbols");
+                throw new InvalidNameException("The name cannot contain symbols");
             }
         }
 
         for (int i = 0; i < name.length(); i++) {
             if (name.charAt(i) == ' ') {
-                throw new Exception("the name must not contain spaces");
+                throw new InvalidNameException("The name must not contain spaces");
             }
         }
 
         return true;
     }
 
-    public boolean validationByInnAndKpp(Long inn, Long kpp) throws Exception {
+    public boolean validationByInnAndKpp(Long inn, Long kpp) {
 
         if (inn < 1000000000L || inn > 9999999999L) {
-            throw new Exception("inn must contain 10 digits");
+            throw new InvalidValueException("inn must contain 10 digits");
         }
 
         if (kpp < 100000000L || kpp > 999999999L) {
-            throw new Exception("kpp must contain 9 digits");
+            throw new InvalidValueException("kpp must contain 9 digits");
         }
 
         return true;
@@ -69,11 +72,15 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     @Transactional
-    public SuccessView save(SaveOrganizationRequest request) throws Exception {
+    public SuccessView save(SaveOrganizationRequest request) {
         validationByName(request.getName());
         validationByInnAndKpp(request.getInn(), request.getKpp());
 
         Organization organization = new Organization(request);
+
+        if (organization == null) {
+            throw new NullPointerException("The organization does not exist");
+        }
 
         organizationDao.add(organization);
 
@@ -82,16 +89,20 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     @Transactional
-    public SuccessView update(UpdateOrganizationRequest request) throws Exception {
+    public SuccessView update(UpdateOrganizationRequest request) {
 
         if (request.getId() == 0) {
-            throw new Exception("this organization does not exist");
+            throw new InvalidValueException("The organization does not exist");
         }
 
         validationByName(request.getName());
         validationByInnAndKpp(request.getInn(), request.getKpp());
 
         Organization organization = new Organization(request);
+
+        if (organization == null) {
+            throw new NullPointerException("The organization does not exist");
+        }
 
         organizationDao.update(organization);
         
@@ -100,12 +111,12 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     @Transactional
-    public List<OrganizationList> findAll(OrganizationListRequest request) throws Exception {
+    public List<OrganizationList> findAll(OrganizationListRequest request) {
 
         List<Organization> orgList = organizationDao.all(request);
 
         if (orgList.isEmpty()) {
-            throw new Exception("organizationList does not exist");
+            throw new EmptyListException("OrganizationList does not exist");
         }
 
         List<OrganizationList> orgListResponse = new ArrayList<>();
@@ -119,16 +130,16 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     @Transactional
-    public GetOrganization findById(Long id) throws Exception {
+    public GetOrganization findById(Long id) {
 
         if (id < 1) {
-            throw new Exception("id greater than 0");
+            throw new InvalidValueException("ID greater than 0");
         }
 
         Organization organization = organizationDao.getById(id);
 
         if (organization == null) {
-            throw new Exception("this organization does not exist");
+            throw new NullPointerException("The organization does not exist");
         }
 
         return new GetOrganization(organization);

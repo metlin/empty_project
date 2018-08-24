@@ -4,6 +4,10 @@ import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.metlin.empty_project.SuccessView;
+import ru.metlin.empty_project.exception.EmptyListException;
+import ru.metlin.empty_project.exception.InvalidNameException;
+import ru.metlin.empty_project.exception.InvalidPhoneNumberException;
+import ru.metlin.empty_project.exception.InvalidValueException;
 import ru.metlin.empty_project.office.dao.OfficeDao;
 import ru.metlin.empty_project.office.model.Office;
 import ru.metlin.empty_project.office.request.OfficeListRequest;
@@ -36,33 +40,33 @@ public class OfficeServiceImpl implements OfficeService {
     public OfficeServiceImpl() {
     }
 
-    public boolean validationByName(String name) throws Exception {
+    public boolean validationByName(String name) {
         if (name == null) {
-            throw new Exception("this office does not exist");
+            throw new NullPointerException("The office does not exist");
         }
 
         for (int i = 0; i < name.length(); i++) {
             if (name.charAt(i) < 'A' || name.charAt(i) > 'z' ) {
-                throw new Exception("the name cannot contain symbols");
+                throw new InvalidNameException("The name cannot contain symbols");
             }
         }
 
         for (int i = 0; i < name.length(); i++) {
             if (name.charAt(i) == ' ') {
-                throw new Exception("the name must not contain spaces");
+                throw new InvalidNameException("The name must not contain spaces");
             }
         }
 
         return true;
     }
 
-    public boolean validationByPhone(String phone) throws Exception {
+    public boolean validationByPhone(String phone) {
 
         Pattern pattern = Pattern.compile("^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$");
         Matcher matcher = pattern.matcher(phone);
 
         if (!matcher.matches()) {
-            throw new Exception("incorrect phone number");
+            throw new InvalidPhoneNumberException("Invalid phone number");
         }
 
         return true;
@@ -70,10 +74,10 @@ public class OfficeServiceImpl implements OfficeService {
 
     @Override
     @Transactional
-    public SuccessView save(SaveOfficeRequest request) throws Exception {
+    public SuccessView save(SaveOfficeRequest request) {
 
         if (request.getOrgId() == 0) {
-            throw new Exception("this office does not exist");
+            throw new InvalidValueException("The office does not exist");
         }
 
         validationByName(request.getName());
@@ -82,10 +86,15 @@ public class OfficeServiceImpl implements OfficeService {
         Organization organization = orgDao.getById(request.getOrgId());
 
         if (organization == null) {
-            throw new Exception("Office should have an organization");
+            throw new NullPointerException("Office should have an organization");
         }
 
         Office office = new Office(request);
+
+        if (office == null) {
+            throw new NullPointerException("The office does not exist");
+        }
+
         office.setOrganization(organization);
         organization.addOffice(office);
 
@@ -96,14 +105,14 @@ public class OfficeServiceImpl implements OfficeService {
 
     @Override
     @Transactional
-    public SuccessView update(UpdateOfficeRequest request) throws Exception {
+    public SuccessView update(UpdateOfficeRequest request) {
 
         if (request.getId() == 0) {
-            throw new Exception("this office does not exist");
+            throw new InvalidValueException("The office does not exist");
         }
 
         if (request.getOrgId() == 0) {
-            throw new Exception("this office does not exist");
+            throw new InvalidValueException("The office does not exist");
         }
 
         validationByName(request.getName());
@@ -112,10 +121,15 @@ public class OfficeServiceImpl implements OfficeService {
         Organization organization = orgDao.getById(request.getOrgId());
 
         if (organization == null) {
-            throw new Exception("Office should have an organization");
+            throw new NullPointerException("Office should have an organization");
         }
 
         Office office = new Office(request);
+
+        if (office == null) {
+            throw new NullPointerException("The office does not exist");
+        }
+
         office.setOrganization(organization);
 
         officeDao.update(office);
@@ -125,12 +139,12 @@ public class OfficeServiceImpl implements OfficeService {
 
     @Override
     @Transactional
-    public List<OfficeList> findAll(OfficeListRequest request) throws Exception {
+    public List<OfficeList> findAll(OfficeListRequest request) {
 
         List<Office> officeList = officeDao.all(request);
 
         if (officeList.isEmpty()) {
-            throw new Exception("officeList does not exist");
+            throw new EmptyListException("OfficeList does not exist (invalid org_id)");
         }
 
         List<OfficeList> officeListResponse = new ArrayList<>();
@@ -144,16 +158,16 @@ public class OfficeServiceImpl implements OfficeService {
 
     @Override
     @Transactional
-    public GetOffice findById(Long id) throws Exception {
+    public GetOffice findById(Long id) {
 
         if (id < 1) {
-            throw new Exception("id greater than 0");
+            throw new InvalidValueException("ID greater than 0");
         }
 
         Office office = officeDao.getById(id);
 
         if (office == null) {
-            throw new Exception("this office does not exist");
+            throw new NullPointerException("The office does not exist");
         }
 
         return new GetOffice(office);

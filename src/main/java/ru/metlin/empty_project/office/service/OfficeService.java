@@ -12,11 +12,11 @@ import java.util.List;
 
 public interface OfficeService {
 
-    SuccessView save(SaveOfficeRequest request) throws Exception;
+    SuccessView save(SaveOfficeRequest request);
 
-    SuccessView update(UpdateOfficeRequest request) throws Exception;
+    SuccessView update(UpdateOfficeRequest request);
 
-    List<OfficeList> findAll(OfficeListRequest request) throws Exception;
+    List<OfficeList> findAll(OfficeListRequest request);
 
-    GetOffice findById(Long id) throws Exception;
+    GetOffice findById(Long id);
 }
