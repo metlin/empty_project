@@ -117,10 +117,6 @@ public class UserServiceImpl implements UserService {
 
         User user = new User(request);
 
-        if (user == null) {
-            throw new NullPointerException("The user does not exist");
-        }
-
         user.setOffice(office);
         office.addUser(user);
         user.setDocument(document);
@@ -169,10 +165,6 @@ public class UserServiceImpl implements UserService {
         }
 
         User user = new User(request);
-
-        if (user == null) {
-            throw new NullPointerException("The user does not exist");
-        }
 
         user.setOffice(office);
         user.setDocument(document);

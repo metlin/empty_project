@@ -5,6 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.metlin.empty_project.Response;
 import ru.metlin.empty_project.SuccessView;
 import ru.metlin.empty_project.exception.EmptyListException;
 import ru.metlin.empty_project.exception.InvalidNameException;
@@ -78,10 +79,6 @@ public class OrganizationServiceImpl implements OrganizationService {
 
         Organization organization = new Organization(request);
 
-        if (organization == null) {
-            throw new NullPointerException("The organization does not exist");
-        }
-
         organizationDao.add(organization);
 
         return new SuccessView();
@@ -100,10 +97,6 @@ public class OrganizationServiceImpl implements OrganizationService {
 
         Organization organization = new Organization(request);
 
-        if (organization == null) {
-            throw new NullPointerException("The organization does not exist");
-        }
-
         organizationDao.update(organization);
         
         return new SuccessView();
@@ -111,7 +104,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     @Transactional
-    public List<OrganizationList> findAll(OrganizationListRequest request) {
+    public Response<List<OrganizationList>> findAll(OrganizationListRequest request) {
 
         List<Organization> orgList = organizationDao.all(request);
 
@@ -125,7 +118,7 @@ public class OrganizationServiceImpl implements OrganizationService {
             orgListResponse.add(new OrganizationList(orgList.get(i)));
         }
 
-        return orgListResponse;
+        return new Response<>(orgListResponse);
     }
 
     @Override

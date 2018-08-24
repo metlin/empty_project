@@ -91,10 +91,6 @@ public class OfficeServiceImpl implements OfficeService {
 
         Office office = new Office(request);
 
-        if (office == null) {
-            throw new NullPointerException("The office does not exist");
-        }
-
         office.setOrganization(organization);
         organization.addOffice(office);
 
@@ -125,10 +121,6 @@ public class OfficeServiceImpl implements OfficeService {
         }
 
         Office office = new Office(request);
-
-        if (office == null) {
-            throw new NullPointerException("The office does not exist");
-        }
 
         office.setOrganization(organization);
 

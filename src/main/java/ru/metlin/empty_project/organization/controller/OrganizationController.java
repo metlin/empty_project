@@ -33,13 +33,13 @@ public class OrganizationController {
     @PostMapping(value = "/list")
     private Response<List<OrganizationList>> getOrganizationList(@RequestBody OrganizationListRequest request) {
         try {
-            return new Response<List<OrganizationList>>(organizationService.findAll(request));
+            return organizationService.findAll(request);
         } catch (Exception e) {
-            return new Response<List<OrganizationList>>(e.getMessage());
+            return new Response<>(e.getMessage());
         }
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/id")
     private Response<GetOrganization> getOrganization(@PathVariable Long id) {
         try {
             return new Response<GetOrganization>(organizationService.findById(id));
