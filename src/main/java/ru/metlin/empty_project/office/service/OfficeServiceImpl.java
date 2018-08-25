@@ -1,9 +1,8 @@
 package ru.metlin.empty_project.office.service;
 
-import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.metlin.empty_project.SuccessView;
+import ru.metlin.empty_project.general_response.SuccessView;
 import ru.metlin.empty_project.exception.EmptyListException;
 import ru.metlin.empty_project.exception.InvalidNameException;
 import ru.metlin.empty_project.exception.InvalidPhoneNumberException;
@@ -16,7 +15,6 @@ import ru.metlin.empty_project.office.request.UpdateOfficeRequest;
 import ru.metlin.empty_project.office.response.GetOffice;
 import ru.metlin.empty_project.office.response.OfficeList;
 import ru.metlin.empty_project.organization.dao.OrganizationDao;
-import ru.metlin.empty_project.organization.dao.OrganizationDaoImpl;
 import ru.metlin.empty_project.organization.model.Organization;
 
 import javax.transaction.Transactional;

@@ -1,4 +1,4 @@
-package ru.metlin.empty_project;
+package ru.metlin.empty_project.general_response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -6,22 +6,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public class Response<T> {
 
     private T data;
-    private String error;
-
-    public Response(String error) {
-        this.error = error;
-    }
 
     public Response(T data) {
         this.data = data;
-    }
-
-    public String getError() {
-        return error;
-    }
-
-    public void setError(String error) {
-        this.error = error;
     }
 
     public T getData() {

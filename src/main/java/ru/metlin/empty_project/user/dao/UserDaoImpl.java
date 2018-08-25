@@ -2,7 +2,6 @@ package ru.metlin.empty_project.user.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import ru.metlin.empty_project.SuccessView;
 import ru.metlin.empty_project.user.model.User;
 import ru.metlin.empty_project.user.request.UserListRequest;
 

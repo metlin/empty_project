@@ -2,7 +2,7 @@ package ru.metlin.empty_project.user.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.metlin.empty_project.SuccessView;
+import ru.metlin.empty_project.general_response.SuccessView;
 import ru.metlin.empty_project.country.dao.CountryDao;
 import ru.metlin.empty_project.country.model.Country;
 import ru.metlin.empty_project.document.dao.DocumentDao;

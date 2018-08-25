@@ -1,12 +1,8 @@
 package ru.metlin.empty_project.organization.service;
 
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.metlin.empty_project.Response;
-import ru.metlin.empty_project.SuccessView;
+import ru.metlin.empty_project.general_response.SuccessView;
 import ru.metlin.empty_project.exception.EmptyListException;
 import ru.metlin.empty_project.exception.InvalidNameException;
 import ru.metlin.empty_project.exception.InvalidValueException;
@@ -104,7 +100,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     @Transactional
-    public Response<List<OrganizationList>> findAll(OrganizationListRequest request) {
+    public List<OrganizationList> findAll(OrganizationListRequest request) {
 
         List<Organization> orgList = organizationDao.all(request);
 
@@ -118,7 +114,7 @@ public class OrganizationServiceImpl implements OrganizationService {
             orgListResponse.add(new OrganizationList(orgList.get(i)));
         }
 
-        return new Response<>(orgListResponse);
+        return orgListResponse;
     }
 
     @Override

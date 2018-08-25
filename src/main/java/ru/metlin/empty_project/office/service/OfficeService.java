@@ -1,7 +1,6 @@
 package ru.metlin.empty_project.office.service;
 
-import ru.metlin.empty_project.SuccessView;
-import ru.metlin.empty_project.office.model.Office;
+import ru.metlin.empty_project.general_response.SuccessView;
 import ru.metlin.empty_project.office.request.OfficeListRequest;
 import ru.metlin.empty_project.office.request.SaveOfficeRequest;
 import ru.metlin.empty_project.office.request.UpdateOfficeRequest;

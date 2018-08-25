@@ -1,10 +1,7 @@
 package ru.metlin.empty_project.organization.dao;
 
-import org.hibernate.Criteria;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import ru.metlin.empty_project.SuccessView;
 import ru.metlin.empty_project.organization.model.Organization;
 import ru.metlin.empty_project.organization.request.OrganizationListRequest;
 

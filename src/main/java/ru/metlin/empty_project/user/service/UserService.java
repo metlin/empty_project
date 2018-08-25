@@ -1,7 +1,6 @@
 package ru.metlin.empty_project.user.service;
 
-import ru.metlin.empty_project.SuccessView;
-import ru.metlin.empty_project.user.model.User;
+import ru.metlin.empty_project.general_response.SuccessView;
 import ru.metlin.empty_project.user.request.SaveUserRequest;
 import ru.metlin.empty_project.user.request.UpdateUserRequest;
 import ru.metlin.empty_project.user.request.UserListRequest;

@@ -1,6 +1,5 @@
 package ru.metlin.empty_project.organization.dao;
 
-import ru.metlin.empty_project.SuccessView;
 import ru.metlin.empty_project.organization.model.Organization;
 import ru.metlin.empty_project.organization.request.OrganizationListRequest;
 
