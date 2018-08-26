@@ -1,11 +1,11 @@
 package ru.metlin.empty_project.organization.service;
 
-import ru.metlin.empty_project.general_response.SuccessView;
+import ru.metlin.empty_project.response.SuccessView;
 import ru.metlin.empty_project.organization.request.OrganizationListRequest;
 import ru.metlin.empty_project.organization.request.SaveOrganizationRequest;
 import ru.metlin.empty_project.organization.request.UpdateOrganizationRequest;
-import ru.metlin.empty_project.organization.response.GetOrganization;
-import ru.metlin.empty_project.organization.response.OrganizationList;
+import ru.metlin.empty_project.organization.view.GetOrganization;
+import ru.metlin.empty_project.organization.view.OrganizationList;
 
 import java.util.List;
 

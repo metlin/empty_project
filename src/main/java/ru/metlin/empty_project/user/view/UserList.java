@@ -1,4 +1,4 @@
-package ru.metlin.empty_project.user.response;
+package ru.metlin.empty_project.user.view;
 
 import ru.metlin.empty_project.user.model.User;
 

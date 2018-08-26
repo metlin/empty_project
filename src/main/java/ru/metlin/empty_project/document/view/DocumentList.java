@@ -1,4 +1,4 @@
-package ru.metlin.empty_project.document.response;
+package ru.metlin.empty_project.document.view;
 
 import ru.metlin.empty_project.document.model.Document;
 

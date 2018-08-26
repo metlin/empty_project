@@ -2,9 +2,21 @@ package ru.metlin.empty_project.office.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.metlin.empty_project.office.request.OfficeListRequest;
+import ru.metlin.empty_project.office.request.SaveOfficeRequest;
+import ru.metlin.empty_project.office.request.UpdateOfficeRequest;
 import ru.metlin.empty_project.office.service.OfficeService;
+import ru.metlin.empty_project.office.view.GetOffice;
+import ru.metlin.empty_project.office.view.OfficeList;
+import ru.metlin.empty_project.response.SuccessView;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/office")
@@ -17,39 +29,27 @@ public class OfficeController {
         this.officeService = officeService;
     }
 
- /*   @PostMapping(value = "/list")
-    private Response<List<OfficeList>> getOfficeList(@RequestBody OfficeListRequest request) {
-        try {
-            return new Response<List<OfficeList>>(officeService.findAll(request));
-        } catch (Exception e) {
-            return new Response<List<OfficeList>>(e.getMessage());
-        }
+    @PostMapping(value = "/list")
+    private List<OfficeList> getOfficeList(@RequestBody OfficeListRequest request) {
+
+        return officeService.findAll(request);
     }
 
     @GetMapping(value = "/{id}")
-    private Response<GetOffice> getOffice(@PathVariable Long id) {
-        try {
-            return new Response<GetOffice>(officeService.findById(id));
-        } catch (Exception e) {
-            return new Response<GetOffice>(e.getMessage());
-        }
+    private GetOffice getOffice(@PathVariable Long id) {
+
+        return officeService.findById(id);
     }
 
     @PostMapping(value = "/save")
-    private Response<SuccessView> createOffice(@RequestBody SaveOfficeRequest request)  {
-        try {
-            return new Response<SuccessView>(officeService.save(request));
-        } catch (Exception e) {
-            return new Response<SuccessView>(e.getMessage());
-        }
+    private SuccessView createOffice(@RequestBody SaveOfficeRequest request)  {
+
+        return officeService.save(request);
     }
 
     @PostMapping(value = "/update")
-    private Response<SuccessView> updateOffice(@RequestBody UpdateOfficeRequest request)  {
-        try {
-            return new Response<SuccessView>(officeService.update(request));
-        } catch (Exception e) {
-            return new Response<SuccessView>(e.getMessage());
-        }
-    } */
+    private SuccessView updateOffice(@RequestBody UpdateOfficeRequest request)  {
+
+        return officeService.update(request);
+    }
 }

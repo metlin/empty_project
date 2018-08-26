@@ -1,4 +1,4 @@
-package ru.metlin.empty_project.general_response;
+package ru.metlin.empty_project.response;
 
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;

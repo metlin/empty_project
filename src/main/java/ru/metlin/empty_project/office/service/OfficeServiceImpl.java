@@ -2,7 +2,7 @@ package ru.metlin.empty_project.office.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.metlin.empty_project.general_response.SuccessView;
+import ru.metlin.empty_project.response.SuccessView;
 import ru.metlin.empty_project.exception.EmptyListException;
 import ru.metlin.empty_project.exception.InvalidNameException;
 import ru.metlin.empty_project.exception.InvalidPhoneNumberException;
@@ -12,8 +12,8 @@ import ru.metlin.empty_project.office.model.Office;
 import ru.metlin.empty_project.office.request.OfficeListRequest;
 import ru.metlin.empty_project.office.request.SaveOfficeRequest;
 import ru.metlin.empty_project.office.request.UpdateOfficeRequest;
-import ru.metlin.empty_project.office.response.GetOffice;
-import ru.metlin.empty_project.office.response.OfficeList;
+import ru.metlin.empty_project.office.view.GetOffice;
+import ru.metlin.empty_project.office.view.OfficeList;
 import ru.metlin.empty_project.organization.dao.OrganizationDao;
 import ru.metlin.empty_project.organization.model.Organization;
 

@@ -2,7 +2,7 @@ package ru.metlin.empty_project.user.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.metlin.empty_project.general_response.SuccessView;
+import ru.metlin.empty_project.response.SuccessView;
 import ru.metlin.empty_project.country.dao.CountryDao;
 import ru.metlin.empty_project.country.model.Country;
 import ru.metlin.empty_project.document.dao.DocumentDao;
@@ -17,8 +17,8 @@ import ru.metlin.empty_project.user.model.User;
 import ru.metlin.empty_project.user.request.SaveUserRequest;
 import ru.metlin.empty_project.user.request.UpdateUserRequest;
 import ru.metlin.empty_project.user.request.UserListRequest;
-import ru.metlin.empty_project.user.response.GetUser;
-import ru.metlin.empty_project.user.response.UserList;
+import ru.metlin.empty_project.user.view.GetUser;
+import ru.metlin.empty_project.user.view.UserList;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;

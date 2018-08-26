@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.metlin.empty_project.document.dao.DocumentDao;
 import ru.metlin.empty_project.document.model.Document;
-import ru.metlin.empty_project.document.response.DocumentList;
+import ru.metlin.empty_project.document.view.DocumentList;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
@@ -22,11 +22,11 @@ public class DocumentServiceImpl implements DocumentService {
 
     @Override
     @Transactional
-    public List<DocumentList> findAll() throws Exception {
+    public List<DocumentList> findAll() {
         List<Document> docList = documentDao.all();
 
         if (docList == null) {
-            throw new Exception("Document list does not exist");
+            throw new NullPointerException("Document list does not exist");
         }
 
         List<DocumentList> docListResponse = new ArrayList<>();

@@ -1,4 +1,4 @@
-package ru.metlin.empty_project.office.response;
+package ru.metlin.empty_project.office.view;
 
 import ru.metlin.empty_project.office.model.Office;
 

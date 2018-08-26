@@ -1,0 +1,6 @@
+2018-08-26 20:07:26 ERROR ResponseExceptionHandler:15 - java.lang.NullPointerException: The user does not exist
+2018-08-26 20:07:51 ERROR ResponseExceptionHandler:15 - ru.metlin.empty_project.exception.EmptyListException: UserList does not exist
+2018-08-26 20:08:45 ERROR ResponseExceptionHandler:15 - ru.metlin.empty_project.exception.EmptyListException: UserList does not exist
+2018-08-26 20:10:47 ERROR ResponseExceptionHandler:15 - ru.metlin.empty_project.exception.InvalidValueException: The organization does not exist
+2018-08-26 20:10:54 ERROR ResponseExceptionHandler:15 - ru.metlin.empty_project.exception.InvalidValueException: inn must contain 10 digits
+2018-08-26 20:11:01 ERROR ResponseExceptionHandler:15 - ru.metlin.empty_project.exception.InvalidValueException: kpp must contain 9 digits

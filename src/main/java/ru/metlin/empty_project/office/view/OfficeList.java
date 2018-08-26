@@ -1,23 +1,17 @@
-package ru.metlin.empty_project.organization.response;
+package ru.metlin.empty_project.office.view;
 
-import ru.metlin.empty_project.organization.model.Organization;
+import ru.metlin.empty_project.office.model.Office;
 
-import java.util.List;
-
-public class OrganizationList {
+public class OfficeList {
 
     private Long id;
     private String name;
     private Boolean isActive;
 
-
-    public OrganizationList(Organization organization) {
-        this.id = organization.getId();
-        this.name = organization.getName();
-        this.isActive = organization.getActive();
-    }
-
-    public OrganizationList() {
+    public OfficeList(Office office) {
+        this.id = office.getId();
+        this.name = office.getName();
+        this.isActive = office.getActive();
     }
 
     public Long getId() {

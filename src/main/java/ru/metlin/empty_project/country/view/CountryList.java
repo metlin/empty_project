@@ -1,4 +1,4 @@
-package ru.metlin.empty_project.country.responce;
+package ru.metlin.empty_project.country.view;
 
 import ru.metlin.empty_project.country.model.Country;
 

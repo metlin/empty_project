@@ -1,4 +1,4 @@
-package ru.metlin.empty_project.organization.response;
+package ru.metlin.empty_project.organization.view;
 
 import ru.metlin.empty_project.organization.model.Organization;
 
